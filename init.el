@@ -45,6 +45,7 @@
 (add-to-list 'load-path "~/.emacs.d/riece/lisp")
 (add-to-list 'load-path "~/.emacs.d/anthy")
 (add-to-list 'load-path "~/.emacs.d/apel")
+(add-to-list 'load-path "~/.emacs.d/color-theme")
 
 (require 'flymake)
 (require 'auto-install)
@@ -59,6 +60,7 @@
 (require 'elscreen-dnd)
 (require 'elscreen-dired)
 (require 'elscreen-speedbar)
+(require 'color-theme)
 
 (load "brackets.elc")
 (load "leim-list.el")
