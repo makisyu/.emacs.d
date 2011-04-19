@@ -62,7 +62,7 @@
 (require 'elscreen-speedbar)
 (require 'color-theme)
 
-(load "brackets.elc")
+(load "brackets.el")
 (load "leim-list.el")
 
 ;; auto-complete
