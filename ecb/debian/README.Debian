@@ -1,0 +1,56 @@
+ecb for Debian
+--------------
+
+-------------------------
+Upgrades from 1.70:
+ECB has a new feature 'ecb-auto-compatibility-check' which enables a check for
+incompatible or renamed ECB-options at ECB startup. These options are then
+auto. upgraded to the new type or reset to the default-values of current
+ECB-version if no upgrade is possible. All upgraded or reset options are
+displayed to the user with their old and new values!
+-------------------------
+
+To use ecb you must turn it on with M-x ecb-activate. It does not start
+by itself!
+Ok, now there is something for automatic activation, read the ecb help.
+
+For help do a M-x ecb-show-help after activation.
+
+For Javasupport it is best to have the jde Package installed.
+I only suggest this. If you don't have jde now do an apt-get install jde
+if you want to develop in Java.
+
+I add the file follow-mouse.el to the lisp-dir of ecb, a quite useful
+thing with ecb. This is the Description of it:
+
+;;; Description:
+;;; By default, a window within an Emacs frame must be selected by
+;;; typing `C-x o' (other-window) or by clicking [mouse-1] on the mode
+;;; line or the buffer itself (mouse-set-point); this corresponds to a
+;;; "click to type" window manager policy.  follow-mouse.el implements a
+;;; "focus follows mouse" window manager policy, so that a window is
+;;; selected when the mouse moves over it.
+;;; 
+;;; To enable follow-mouse, put this in your ~/.emacs file:
+;;;     (turn-on-follow-mouse)
+;;; 
+;;; follow-mouse can be enabled or disabled interactively with the
+;;; `M-x turn-on-follow-mouse', `M-x turn-off-follow-mouse', and
+;;; `M-x toggle-follow-mouse' commands.
+;;; 
+;;; By default, follow-mouse will deselect an active minibuffer window;
+;;; to prevent that, just unset the
+;;; `follow-mouse-deselect-active-minibuffer' option.
+;;; 
+;;; By default, follow-mouse also raises the frame whose window is
+;;; selected; to disable that, just unset the
+;;; `follow-mouse-auto-raise-frame' option.
+
+If you want to use it you must load it with (require 'follow-mouse), i
+don't do that for you in the ecb-startup Script! And then you probably
+like to turn-on-follow-mouse to the ecb-activate-hook and
+turn-off-follow-mouse to the ecb-deactivate-hook, look into ecb
+Customization.
+
+
+ -- Joerg Jaspert <joerg@debian.org>, Wed, 22 May 2002 21:12:07 +0200

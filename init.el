@@ -52,6 +52,19 @@
 (add-to-list 'load-path "~/.emacs.d/anthy")
 (add-to-list 'load-path "~/.emacs.d/apel")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
+(add-to-list 'load-path "~/.emacs.d/ecb")
+(add-to-list 'load-path "~/.emacs.d/cedet/common")
+(add-to-list 'load-path "~/.emacs.d/cedet/cogre")
+(add-to-list 'load-path "~/.emacs.d/cedet/contrib")
+(add-to-list 'load-path "~/.emacs.d/cedet/ede")
+(add-to-list 'load-path "~/.emacs.d/cedet/eieio")
+(add-to-list 'load-path "~/.emacs.d/cedet/semantic")
+(add-to-list 'load-path "~/.emacs.d/cedet/speedbar")
+(add-to-list 'load-path "~/.emacs.d/cedet/srecode")
+
+(load "brackets.el")
+(load "leim-list.el")
+(load "cedet.el")
 
 (require 'flymake)
 (require 'auto-install)
@@ -67,9 +80,11 @@
 (require 'elscreen-dired)
 (require 'elscreen-speedbar)
 (require 'color-theme)
+(require 'ecb)
 
-(load "brackets.el")
-(load "leim-list.el")
+;; cedet
+(global-ede-mode 1)
+(semantic-load-enable-gaudy-code-helpers)
 
 ;; auto-complete
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
