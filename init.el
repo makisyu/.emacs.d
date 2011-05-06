@@ -40,6 +40,7 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode nil)
+(cua-mode t)
 (global-set-key "\C-m" 'newline-and-indent)
 
 (set-frame-parameter nil 'fullscreen 'maximized)
@@ -81,6 +82,8 @@
 (require 'elscreen-speedbar)
 (require 'color-theme)
 (require 'ecb)
+(require 'hideif)
+(require 'hideshow)
 
 ;; cedet
 (global-ede-mode 1)
@@ -145,5 +148,11 @@
 ;; c-eldoc
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 (add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
+
+;; hideshow and hideif
+(add-hook 'c-mode-hook 'hs-minor-mode)
+(add-hook 'c++-mode-hook 'hs-minor-mode)
+(add-hook 'c-mode-hook 'hide-ifdef-mode)
+(add-hook 'c++-mode-hook hide-ifdef-mode)
 
 (load "myconf.el")
