@@ -43,6 +43,7 @@
 (global-set-key "\C-m" 'newline-and-indent)
 
 (set-frame-parameter nil 'fullscreen 'maximized)
+(set-frame-parameter nil 'alpha 85)
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/twittering-mode")
@@ -84,6 +85,10 @@
 (require 'hideif)
 (require 'hideshow)
 (require 'dired)
+
+;; color-theme
+(color-theme-initialize)
+(color-theme-clarity)
 
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
