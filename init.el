@@ -40,7 +40,6 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode nil)
-(cua-mode t)
 (global-set-key "\C-m" 'newline-and-indent)
 
 (set-frame-parameter nil 'fullscreen 'maximized)
@@ -84,6 +83,12 @@
 (require 'ecb)
 (require 'hideif)
 (require 'hideshow)
+(require 'dired)
+
+;; dired
+(put 'dired-find-alternate-file 'disabled nil)
+(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+(define-key dired-mode-map "a" 'dired-advertised-find-file)
 
 ;; cedet
 (global-ede-mode 1)
