@@ -35,15 +35,14 @@
 (icomplete-mode t)
 (iswitchb-mode t)
 (which-function-mode t)
-(global-hl-line-mode t)
 (column-number-mode t)
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
-(tool-bar-mode nil)
+(tool-bar-mode 0)
 (global-set-key "\C-m" 'newline-and-indent)
 
 (set-frame-parameter nil 'fullscreen 'maximized)
-(set-frame-parameter nil 'alpha 85)
+(set-frame-parameter nil 'alpha 80)
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/twittering-mode")
