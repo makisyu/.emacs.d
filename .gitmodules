@@ -4,6 +4,3 @@
 [submodule "auto-complete"]
 	path = auto-complete
 	url = git://github.com/m2ym/auto-complete.git
-[submodule "riece"]
-	path = riece
-	url = git://git.savannah.nongnu.org/riece.git
