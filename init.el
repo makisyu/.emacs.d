@@ -84,6 +84,7 @@
 (require 'hideif)
 (require 'hideshow)
 (require 'dired)
+(require 'semantic-gcc)
 
 ;; color-theme
 (color-theme-initialize)
@@ -96,7 +97,9 @@
 
 ;; cedet
 (global-ede-mode 1)
-(semantic-load-enable-gaudy-code-helpers)
+;; (semantic-load-enable-gaudy-code-helpers)
+(semantic-load-enable-code-helpers)
+
 
 ;; auto-complete
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
@@ -163,5 +166,25 @@
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook hide-ifdef-mode)
+
+;; for C
+;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
+;; (defun my-c-mode-cedet-hook ()
+;;   (local-set-key "." 'senator-completion-menu-popup)
+;;   (local-set-key ">" 'senator-completion-menu-popup))
+
+(setq c-basic-offset 8)
+(add-hook 'c-mode-hook
+          '(lambda()
+             (progn
+               (define-key c-mode-map "{" 'insert-braces)
+               (define-key c-mode-map "(" 'insert-parens)
+               (define-key c-mode-map "\"" 'insert-double-quotation)
+               (define-key c-mode-map "'" 'insert-single-quotation)
+               (define-key c-mode-map "[" 'insert-brackets)
+               (define-key c-mode-map "\C-c}" 'insert-braces-region)
+               (define-key c-mode-map "\C-c)" 'insert-parens-region)
+               (define-key c-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key c-mode-map "\C-c\"" 'insert-double-quotation-region))))
 
 (load "myconf.el")
