@@ -7,24 +7,24 @@
 ;; (set-fontset-font "fontset-default"
 ;;                   'katakana-jisx0201
 ;;                   '("IPAexゴシック" . "jisx0201.*"))
-;; (set-fontset-font "fontset-default"
-;;                   'japanese-jisx0208
-;;                   '("モトヤLシータ゛3等幅" . "jisx0208.*"))
-;; (set-fontset-font "fontset-default"
-;;                   'katakana-jisx0201
-;;                   '("モトヤLシータ゛3等幅" . "jisx0201.*"))
+(set-fontset-font "fontset-default"
+                  'japanese-jisx0208
+                  '("モトヤLシータ゛3等幅" . "jisx0208.*"))
+(set-fontset-font "fontset-default"
+                  'katakana-jisx0201
+                  '("モトヤLシータ゛3等幅" . "jisx0201.*"))
 ;; (set-fontset-font "fontset-default"
 ;;                   'japanese-jisx0208
 ;;                   '("モトヤLマルベリ3等幅" . "jisx0208.*"))
 ;; (set-fontset-font "fontset-default"
 ;;                   'katakana-jisx0201
 ;;                   '("モトヤLマルベリ3等幅" . "jisx0201.*"))
-(set-fontset-font "fontset-default"
-                  'japanese-jisx0208
-                  '("Ricty" . "jisx0208.*"))
-(set-fontset-font "fontset-default"
-                  'katakana-jisx0201
-                  '("Ricty" . "jisx0201.*"))
+;; (set-fontset-font "fontset-default"
+;;                   'japanese-jisx0208
+;;                   '("Ricty" . "jisx0208.*"))
+;; (set-fontset-font "fontset-default"
+;;                   'katakana-jisx0201
+;;                   '("Ricty" . "jisx0201.*"))
 
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
