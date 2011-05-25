@@ -66,6 +66,7 @@
 (load "cedet.el")
 
 (require 'flymake)
+(require 'xcscope)
 (require 'auto-install)
 (require 'twittering-mode)
 (require 'eldoc)
