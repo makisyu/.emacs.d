@@ -1,9 +1,9 @@
 ;;; semantic-utest.el --- Tests for semantic's parsing system.
 
-;;; Copyright (C) 2003, 2004, 2007, 2008, 2009 Eric M. Ludlam
+;;; Copyright (C) 2003, 2004, 2007, 2008, 2009, 2010 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
-;; X-RCS: $Id: semantic-utest.el,v 1.15 2010/02/09 00:21:12 scymtym Exp $
+;; X-RCS: $Id: semantic-utest.el,v 1.17 2010-04-18 21:44:04 zappo Exp $
 
 ;; This file is not part of GNU Emacs.
 
@@ -233,6 +233,11 @@ def fun1(a,b,c):
 def fun2(a,b,c): #1
   return b
 
+def fun_yield():
+  yield
+  yield 1
+  yield 1, 2
+
 # Statements
 for x in y:
     print x
@@ -284,11 +289,9 @@ r, s, t = 1, 2, '3'
       :type "class")
      nil nil)
     ("DocString" type
-     (:members
-      (("\"\"\"Documentation string\"\"\"" code
-	nil (reparse-symbol indented_block_body) nil))
-      :type "class")
-     nil nil) ;; doc "Documentation string"
+     (:documentation "Documentation string"
+      :type          "class")
+     nil nil)
     ("MultipleInheritance" type
      (:superclasses ("Parent1" "Parent2")
       :members
@@ -300,15 +303,21 @@ r, s, t = 1, 2, '3'
       (("method" function
 	(:arguments
 	 (("this" variable
-	   nil (reparse-symbol function_parameters) nil)))
+	   nil (reparse-symbol function_parameters) nil))
+	 :parent
+	 "dummy")
 	(reparse-symbol indented_block_body) nil)
        ("method2" function
-	(:arguments
+	(:parent
+	 "dummy"
+	 :arguments
 	 (("self" variable
 	   nil (reparse-symbol function_parameters) nil)))
 	(reparse-symbol indented_block_body) nil)
        ("method3" function
-	(:arguments
+	(:parent
+	 "dummy"
+	 :arguments
 	 (("self" variable
 	   nil (reparse-symbol function_parameters) nil)
 	  ("a" variable
@@ -387,6 +396,8 @@ r, s, t = 1, 2, '3'
         (reparse-symbol function_parameters)
         (overlay 45 46 "tst.py"))))
      nil (overlay 32 65 "tst.py"))
+    ("fun_yield" function
+     nil nil nil)
 
     ;; Statements
     ("for"     code     nil nil nil)
@@ -396,7 +407,7 @@ r, s, t = 1, 2, '3'
     ("if"      code     nil nil nil)
     ("x"       variable nil nil nil)
     ("y"       variable nil nil nil)
-    ("r, s, t" code     nil nil nil) ;; TODO should be multiple variable tags
+    ("r, s, t" code nil nil nil) ;; TODO should be multiple variable tags
     )
   "List of expected tag names for Python.")
 
@@ -720,6 +731,8 @@ Pre-fill the buffer with CONTENTS."
       (semantic-utest-last-invalid semantic-utest-C-name-contents '("fun2") "/\\*1\\*/" "/* Deleted this line */")
       (semantic-utest-verify-names semantic-utest-C-name-contents)
 
+      (semantic-sanity-check)
+
       (set-buffer-modified-p nil)
       ;; Clean up
       ;; (kill-buffer buff)
@@ -762,6 +775,8 @@ INSERTME is the text to be inserted after the deletion."
       ;;(message "Invalid tag test %s." testname)
       (semantic-utest-last-invalid name-contents names-removed killme insertme)
       (semantic-utest-verify-names name-contents)
+
+      (semantic-sanity-check)
 
       (set-buffer-modified-p nil)
       ;; Clean up

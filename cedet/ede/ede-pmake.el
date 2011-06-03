@@ -4,7 +4,7 @@
 
 ;; Author: Eric M. Ludlam <zappo@gnu.org>
 ;; Keywords: project, make
-;; RCS: $Id: ede-pmake.el,v 1.65 2010/02/08 17:58:19 zappo Exp $
+;; RCS: $Id: ede-pmake.el,v 1.66 2010-03-15 13:40:54 xscript Exp $
 
 ;; This software is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@
 ;;       1) Insert distribution source variables for targets
 ;;       2) Insert user requested rules
 
+(eval-when-compile (require 'cl))
 (require 'ede-proj)
 (require 'ede-proj-obj)
 (require 'ede-proj-comp)
@@ -261,12 +262,13 @@ Execute BODY in a location where a value can be placed."
   "Add VARNAME into the current Makefile if it doesn't exist.
 Execute BODY in a location where a value can be placed."
   `(let ((addcr t) (v ,varname))
-     (unless (re-search-backward (concat "^" v "\\s-*=") nil t)
-       (insert v "=")
-       ,@body
-       (if addcr (insert "\n"))
-       (goto-char (point-max)))
-     ))
+       (unless
+	   (save-excursion
+	     (re-search-backward (concat "^" v "\\s-*=") nil t))
+	 (insert v "=")
+	 ,@body
+	 (when addcr (insert "\n"))
+	 (goto-char (point-max)))))
 (put 'ede-pmake-insert-variable-once 'lisp-indent-function 1)
 
 ;;; SOURCE VARIABLE NAME CONSTRUCTION

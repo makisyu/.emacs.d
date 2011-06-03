@@ -1,9 +1,9 @@
 ;;; ede-emacs.el --- Special project for Emacs
 
-;; Copyright (C) 2008, 2009 Eric M. Ludlam
+;; Copyright (C) 2008, 2009, 2010 Eric M. Ludlam
 
 ;; Author: Eric M. Ludlam <eric@siege-engine.com>
-;; X-RCS: $Id: ede-emacs.el,v 1.10 2009/11/22 13:31:40 zappo Exp $
+;; X-RCS: $Id: ede-emacs.el,v 1.12 2010-05-18 00:42:14 zappo Exp $
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -74,8 +74,7 @@ Return a tuple of ( EMACSNAME . VERSION )."
   (let ((buff (get-buffer-create " *emacs-query*"))
 	(emacs "Emacs")
 	(ver ""))
-    (save-excursion
-      (set-buffer buff)
+    (with-current-buffer buff
       (erase-buffer)
       (setq default-directory (file-name-as-directory dir))
       ;(call-process "egrep" nil buff nil "-n" "-e" "^version=" "Makefile")
@@ -91,6 +90,17 @@ Return a tuple of ( EMACSNAME . VERSION )."
 	(re-search-forward "emacs_major_version=\\([0-9]+\\)
 emacs_minor_version=\\([0-9]+\\)
 emacs_beta_version=\\([0-9]+\\)")
+	(setq ver (concat (match-string 1) "."
+			  (match-string 2) "."
+			  (match-string 3)))
+	)
+       ((file-exists-p "sxemacs.pc.in")
+	(setq emacs "SXEmacs")
+	(insert-file-contents "sxemacs_version.m4")
+	(goto-char (point-min))
+	(re-search-forward "m4_define(\\[SXEM4CS_MAJOR_VERSION\\], \\[\\([0-9]+\\)\\])
+m4_define(\\[SXEM4CS_MINOR_VERSION\\], \\[\\([0-9]+\\)\\])
+m4_define(\\[SXEM4CS_BETA_VERSION\\], \\[\\([0-9]+\\)\\])")
 	(setq ver (concat (match-string 1) "."
 			  (match-string 2) "."
 			  (match-string 3)))
@@ -163,7 +173,7 @@ All directories need at least one target.")
 
 (defmethod initialize-instance ((this ede-emacs-project)
 				&rest fields)
-  "Make sure the :file is fully expanded."
+  "Make sure the targets slot is bound."
   (call-next-method)
   (unless (slot-boundp this 'targets)
     (oset this :targets nil)))
