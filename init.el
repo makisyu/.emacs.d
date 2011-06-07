@@ -143,9 +143,8 @@
 (setq twittering-icon-mode t)
 (setq twittering-use-master-password t)
 (setq twittering-retweet-format " RT @%s: %t")
-(setq twittering-status-format
-      "%i %S (%s), %@ from %f%L%r%R\n%FILL[  ]{%T}\n")
-(setq twittering-number-of-tweets-on-retrieval 190)
+(setq twittering-status-format "%i %S (%s), %@ from %f%L%r%R\n%FILL[  ]{%T}")
+(setq twittering-number-of-tweets-on-retrieval 200)
 
 ;; elscreen
 (elscreen-set-prefix-key "\C-t")
@@ -161,11 +160,6 @@
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
 
 ;; for C
-;; (add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
-;; (defun my-c-mode-cedet-hook ()
-;;   (local-set-key "." 'senator-completion-menu-popup)
-;;   (local-set-key ">" 'senator-completion-menu-popup))
-
 (setq c-basic-offset 8)
 
 (load "myconf.el")
