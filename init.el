@@ -1,6 +1,6 @@
 (set-face-attribute 'default nil
                     :family "Inconsolata"
-                    :height 110)
+                    :height 120)
 ;; (set-fontset-font "fontset-default"
 ;;                   'japanese-jisx0208
 ;;                   '("IPAexゴシック" . "jisx0208.*"))
