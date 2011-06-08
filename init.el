@@ -59,6 +59,7 @@
 (add-to-list 'load-path "~/.emacs.d/cedet/semantic")
 (add-to-list 'load-path "~/.emacs.d/cedet/speedbar")
 (add-to-list 'load-path "~/.emacs.d/cedet/srecode")
+(add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 
 (load "brackets.el")
 (load "leim-list.el")
@@ -80,6 +81,7 @@
 (require 'hideif)
 (require 'hideshow)
 (require 'dired)
+(require 'perltidy-mode)
 
 ;; color-theme
 (color-theme-initialize)
@@ -109,35 +111,27 @@
       cperl-continued-statement-offset 4
       cperl-highlight-variables-indiscriminately t)
 
-;;; perl-tidy
-(defun perltidy-region ()
-  "Run perltidy on the current region."
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (point) (mark) "perltidy -q" nil t)))
-(defun perltidy-defun ()
-  "Run perltidy on the current defun."
-  (interactive)
-  (save-excursion (mark-defun) (perltidy-region)))
-
 ;;; brackets for perl
-(add-hook 'cperl-mode-hook
-          '(lambda()
-             (progn
-               (define-key cperl-mode-map "{" 'insert-braces)
-               (define-key cperl-mode-map "(" 'insert-parens)
-               (define-key cperl-mode-map "\"" 'insert-double-quotation)
-               (define-key cperl-mode-map "'" 'insert-single-quotation)
-               (define-key cperl-mode-map "[" 'insert-brackets)
-               (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
-               (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
-               (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
-               (define-key cperl-mode-map "\C-c\""
-                 'insert-double-quotation-region))))
+;; (add-hook 'cperl-mode-hook
+;;           '(lambda()
+;;              (progn
+;;                (define-key cperl-mode-map "{" 'insert-braces)
+;;                (define-key cperl-mode-map "(" 'insert-parens)
+;;                (define-key cperl-mode-map "\"" 'insert-double-quotation)
+;;                (define-key cperl-mode-map "'" 'insert-single-quotation)
+;;                (define-key cperl-mode-map "[" 'insert-brackets)
+;;                (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
+;;                (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
+;;                (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
+;;                (define-key cperl-mode-map "\C-c\""
+;;                  'insert-double-quotation-region))))
 
 ;;; flymake for perl
 (defun flymake-perl-load () (flymake-mode t))
 (add-hook 'cperl-mode-hook 'flymake-perl-load)
+
+;; Makes perltidy-mode automatic for cperl-mode
+(add-hook 'cperl-mode-hook 'perltidy-mode)
 
 ;; twittering-mode
 (setq twittering-icon-mode t)
