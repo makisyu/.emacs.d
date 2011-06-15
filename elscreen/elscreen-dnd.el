@@ -34,10 +34,14 @@
 ;; Code:
 
 (defmacro elscreen-dnd-drag-n-drop (ad-do-it)
-  (` (progn
+  ;; (` (progn
+  ;;      (elscreen-notify-screen-modification-suppress
+  ;;       (, ad-do-it))
+  ;;      (elscreen-notify-screen-modification 'force))))
+  `(progn
        (elscreen-notify-screen-modification-suppress
-	(, ad-do-it))
-       (elscreen-notify-screen-modification 'force))))
+	,ad-do-it)
+       (elscreen-notify-screen-modification 'force)))
 
 (defadvice dnd-handle-one-url (around elscreen-dnd-handle-open-url activate)
   (if (not elscreen-dnd-open-file-new-screen)
@@ -53,6 +57,6 @@
 
 (mapc
  (lambda (drag-n-drop-function)
-   (eval (` (defadvice (, drag-n-drop-function) (around elscreen-dnd-drag-n-drop activate)
-	      (elscreen-dnd-drag-n-drop ad-do-it)))))
+   (eval `(defadvice ,drag-n-drop-function (around elscreen-dnd-drag-n-drop activate)
+	      (elscreen-dnd-drag-n-drop ad-do-it))))
  (list 'x-dnd-handle-drag-n-drop-event 'mac-drag-n-drop 'w32-drag-n-drop))
