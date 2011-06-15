@@ -112,19 +112,19 @@
       cperl-highlight-variables-indiscriminately t)
 
 ;;; brackets for perl
-;; (add-hook 'cperl-mode-hook
-;;           '(lambda()
-;;              (progn
-;;                (define-key cperl-mode-map "{" 'insert-braces)
-;;                (define-key cperl-mode-map "(" 'insert-parens)
-;;                (define-key cperl-mode-map "\"" 'insert-double-quotation)
-;;                (define-key cperl-mode-map "'" 'insert-single-quotation)
-;;                (define-key cperl-mode-map "[" 'insert-brackets)
-;;                (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
-;;                (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
-;;                (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
-;;                (define-key cperl-mode-map "\C-c\""
-;;                  'insert-double-quotation-region))))
+(add-hook 'cperl-mode-hook
+          '(lambda()
+             (progn
+               (define-key cperl-mode-map "{" 'insert-braces)
+               (define-key cperl-mode-map "(" 'insert-parens)
+               (define-key cperl-mode-map "\"" 'insert-double-quotation)
+               (define-key cperl-mode-map "'" 'insert-single-quotation)
+               (define-key cperl-mode-map "[" 'insert-brackets)
+               (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
+               (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
+               (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key cperl-mode-map "\C-c\""
+                 'insert-double-quotation-region))))
 
 ;;; flymake for perl
 (defun flymake-perl-load () (flymake-mode t))
