@@ -83,6 +83,9 @@
 (require 'dired)
 (require 'perltidy-mode)
 
+;; perltidy-mode
+(setq perltidy-bin "perltidy -pbp -q")
+
 ;; color-theme
 (color-theme-initialize)
 (color-theme-clarity)
