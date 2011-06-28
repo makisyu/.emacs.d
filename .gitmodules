@@ -7,3 +7,6 @@
 [submodule "perltidy-mode"]
 	path = perltidy-mode
 	url = git@github.com:makisyu/perltidy-mode.git
+[submodule "gist-mode"]
+	path = gist-mode
+	url = git://github.com/defunkt/gist.el.git

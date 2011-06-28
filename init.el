@@ -60,6 +60,7 @@
 (add-to-list 'load-path "~/.emacs.d/cedet/speedbar")
 (add-to-list 'load-path "~/.emacs.d/cedet/srecode")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
+(add-to-list 'load-path "~/.emacs.d/gist-mode")
 
 (load "brackets.el")
 (load "leim-list.el")
@@ -82,6 +83,7 @@
 (require 'hideshow)
 (require 'dired)
 (require 'perltidy-mode)
+(require 'gist)
 
 ;; perltidy-mode
 (setq perltidy-bin "perltidy -pbp -q")
