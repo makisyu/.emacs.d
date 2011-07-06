@@ -61,10 +61,14 @@
 (add-to-list 'load-path "~/.emacs.d/cedet/srecode")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 (add-to-list 'load-path "~/.emacs.d/gist-mode")
+(add-to-list 'load-path "~/.emacs.d/auctex")
+(add-to-list 'load-path "~/.emacs.d/auctex/preview")
 
 (load "brackets.el")
 (load "leim-list.el")
 (load "cedet.el")
+(load "auctex.el")
+(load "preview-latex.el")
 
 (require 'flymake)
 (require 'auto-install)
