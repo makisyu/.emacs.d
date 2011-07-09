@@ -88,6 +88,10 @@
 (require 'dired)
 (require 'perltidy-mode)
 (require 'gist)
+(require 'ispell)
+
+(setq ispell-program-name "aspell")
+(setq ispell-dictionary "en")
 
 ;; perltidy-mode
 (setq perltidy-bin "perltidy -pbp -q")
