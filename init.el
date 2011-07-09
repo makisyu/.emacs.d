@@ -90,10 +90,16 @@
 (require 'gist)
 (require 'ispell)
 
+;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
 
-;; perltidy-mode
+;; AUCTeX
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+ ;; perltidy-mode
 (setq perltidy-bin "perltidy -pbp -q")
 
 ;; color-theme
