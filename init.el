@@ -89,6 +89,7 @@
 (require 'perltidy-mode)
 (require 'gist)
 (require 'ispell)
+(require 'flyspell)
 
 ;; ispell
 (setq ispell-program-name "aspell")
@@ -150,7 +151,11 @@
 (add-hook 'cperl-mode-hook 'flymake-perl-load)
 
 ;; Makes perltidy-mode automatic for cperl-mode
-(add-hook 'cperl-mode-hook 'perltidy-mode)
+(defun perltidy-perl-load () (perltidy-mode t))
+(add-hook 'cperl-mode-hook 'perltidy-perl-load)
+
+;; flyspell for cperl-mode
+(add-hook 'cperl-mode-hook 'flyspell-prog-mode)
 
 ;; twittering-mode
 (setq twittering-icon-mode t)
