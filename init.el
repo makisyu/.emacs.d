@@ -48,7 +48,6 @@
 (set-frame-parameter nil 'alpha 80)
 
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/twittering-mode")
 (add-to-list 'load-path "~/.emacs.d/elscreen")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/anthy")
@@ -75,7 +74,6 @@
 
 (require 'flymake)
 (require 'auto-install)
-(require 'twittering-mode)
 (require 'eldoc)
 (require 'eldoc-extension)
 (require 'c-eldoc)
@@ -159,13 +157,6 @@
 
 ;; flyspell for cperl-mode
 (add-hook 'cperl-mode-hook 'flyspell-prog-mode)
-
-;; twittering-mode
-(setq twittering-icon-mode t)
-(setq twittering-use-master-password t)
-(setq twittering-retweet-format " RT @%s: %t")
-(setq twittering-status-format "%i %S (%s), %@ from %f%L%r%R\n%FILL[  ]{%T}")
-(setq twittering-number-of-tweets-on-retrieval 200)
 
 ;; elscreen
 (elscreen-set-prefix-key "\C-t")
