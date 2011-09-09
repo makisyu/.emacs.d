@@ -62,7 +62,6 @@
 (add-to-list 'load-path "~/.emacs.d/cedet/speedbar")
 (add-to-list 'load-path "~/.emacs.d/cedet/srecode")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
-(add-to-list 'load-path "~/.emacs.d/gist-mode")
 (add-to-list 'load-path "~/.emacs.d/auctex")
 (add-to-list 'load-path "~/.emacs.d/auctex/preview")
 
@@ -88,7 +87,6 @@
 (require 'hideshow)
 (require 'dired)
 (require 'perltidy-mode)
-(require 'gist)
 (require 'ispell)
 (require 'flyspell)
 
