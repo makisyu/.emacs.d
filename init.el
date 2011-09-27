@@ -113,7 +113,22 @@
 
 ;; cedet
 (global-ede-mode 1)
-(semantic-load-enable-gaudy-code-helpers)
+(semantic-load-enable-code-helpers)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(global-semantic-decoration-mode t nil (semantic-decorate-mode))
+ '(global-semantic-highlight-edits-mode t nil (semantic-util-modes))
+ '(global-semantic-highlight-func-mode t nil (semantic-util-modes))
+ '(global-semantic-idle-scheduler-mode t nil (semantic-idle))
+ '(global-semantic-mru-bookmark-mode t nil (semantic-util-modes))
+ '(global-semantic-show-parser-state-mode t nil (semantic-util-modes))
+ '(global-semantic-show-unmatched-syntax-mode nil nil (semantic-util-modes))
+ '(global-semantic-stickyfunc-mode nil nil (semantic-util-modes))
+ '(global-senator-minor-mode t nil (senator))
+ '(which-function-mode t))
 
 ;; auto-complete
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
@@ -173,3 +188,4 @@
 (setq c-basic-offset 8)
 
 (load "myconf.el")
+
