@@ -156,6 +156,9 @@
 
 ;; for C
 (setq c-basic-offset 8)
+;; flyspell for C and C++ mode
+(add-hook 'c-mode-hook 'flyspell-prog-mode)
+(add-hook 'c++-mode-hook 'flyspell-prog-mode)
 ;; c-eldoc
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 (add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
