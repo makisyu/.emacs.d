@@ -151,11 +151,9 @@
                (define-key cperl-mode-map "\C-c\""
                  'insert-double-quotation-region))))
 ;; flymake for perl
-(defun flymake-perl-load () (flymake-mode t))
-(add-hook 'cperl-mode-hook 'flymake-perl-load)
+(add-hook 'cperl-mode-hook (lambda () (flymake-mode t)))
 ;; Makes perltidy-mode automatic for cperl-mode
-(defun perltidy-perl-load () (perltidy-mode t))
-(add-hook 'cperl-mode-hook 'perltidy-perl-load)
+(add-hook 'cperl-mode-hook (lambda () (perltidy-mode t)))
 ;; flyspell for cperl-mode
 (add-hook 'cperl-mode-hook 'flyspell-prog-mode)
 
