@@ -80,6 +80,7 @@
 (require 'perltidy-mode)
 (require 'ispell)
 (require 'flyspell)
+(require 'perl-completion)
 
 
 
@@ -127,8 +128,14 @@
 (setq cperl-indent-level 4
       cperl-continued-statement-offset 4
       cperl-highlight-variables-indiscriminately t)
- ;; perltidy-mode
+;; perltidy-mode
 (setq perltidy-bin "perltidy -pbp -q")
+;; perl-completion-mode
+(add-hook 'cperl-mode-hook
+          (lambda ()
+            (perl-completion-mode t)
+            (setq ac-sources
+                  '(ac-source-perl-completion))))
 ;; brackets for perl
 (add-hook 'cperl-mode-hook
           '(lambda()
