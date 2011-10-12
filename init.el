@@ -81,27 +81,89 @@
 (require 'ispell)
 (require 'flyspell)
 
+
+
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
+
+
 
 ;; AUCTeX
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
- ;; perltidy-mode
-(setq perltidy-bin "perltidy -pbp -q")
+
 
 ;; color-theme
 (color-theme-initialize)
 (color-theme-clarity)
+
+
 
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map "a" 'dired-advertised-find-file)
 
+
+
+;; auto-complete
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
+(ac-config-default)
+
+
+
+;; anthy
+(setq default-input-method "japanese-anthy")
+(setq anthy-wide-space " ")
+
+
+
+;;; cperl-mode is preferred to perl-mode
+;;; "Brevity is the soul of wit" <foo at acm.org>                               
+(defalias 'perl-mode 'cperl-mode)
+(setq cperl-indent-level 4
+      cperl-continued-statement-offset 4
+      cperl-highlight-variables-indiscriminately t)
+ ;; perltidy-mode
+(setq perltidy-bin "perltidy -pbp -q")
+;; brackets for perl
+(add-hook 'cperl-mode-hook
+          '(lambda()
+             (progn
+               (define-key cperl-mode-map "{" 'insert-braces)
+               (define-key cperl-mode-map "(" 'insert-parens)
+               (define-key cperl-mode-map "\"" 'insert-double-quotation)
+               (define-key cperl-mode-map "'" 'insert-single-quotation)
+               (define-key cperl-mode-map "[" 'insert-brackets)
+               (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
+               (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
+               (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key cperl-mode-map "\C-c\""
+                 'insert-double-quotation-region))))
+;; flymake for perl
+(defun flymake-perl-load () (flymake-mode t))
+(add-hook 'cperl-mode-hook 'flymake-perl-load)
+;; Makes perltidy-mode automatic for cperl-mode
+(defun perltidy-perl-load () (perltidy-mode t))
+(add-hook 'cperl-mode-hook 'perltidy-perl-load)
+;; flyspell for cperl-mode
+(add-hook 'cperl-mode-hook 'flyspell-prog-mode)
+
+
+
+;; for C
+(setq c-basic-offset 8)
+;; c-eldoc
+(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
+;; hideshow and hideif
+(add-hook 'c-mode-hook 'hs-minor-mode)
+(add-hook 'c++-mode-hook 'hs-minor-mode)
+(add-hook 'c-mode-hook 'hide-ifdef-mode)
+(add-hook 'c++-mode-hook 'hide-ifdef-mode)
 ;; cedet
 (global-ede-mode 1)
 (semantic-load-enable-code-helpers)
@@ -121,62 +183,10 @@
  '(global-senator-minor-mode t nil (senator))
  '(which-function-mode t))
 
-;; auto-complete
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
-(ac-config-default)
 
-;; anthy
-(setq default-input-method "japanese-anthy")
-(setq anthy-wide-space " ")
-
-;;; cperl-mode is preferred to perl-mode
-;;; "Brevity is the soul of wit" <foo at acm.org>                               
-(defalias 'perl-mode 'cperl-mode)
-(setq cperl-indent-level 4
-      cperl-continued-statement-offset 4
-      cperl-highlight-variables-indiscriminately t)
-
-;;; brackets for perl
-(add-hook 'cperl-mode-hook
-          '(lambda()
-             (progn
-               (define-key cperl-mode-map "{" 'insert-braces)
-               (define-key cperl-mode-map "(" 'insert-parens)
-               (define-key cperl-mode-map "\"" 'insert-double-quotation)
-               (define-key cperl-mode-map "'" 'insert-single-quotation)
-               (define-key cperl-mode-map "[" 'insert-brackets)
-               (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
-               (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
-               (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
-               (define-key cperl-mode-map "\C-c\""
-                 'insert-double-quotation-region))))
-
-;;; flymake for perl
-(defun flymake-perl-load () (flymake-mode t))
-(add-hook 'cperl-mode-hook 'flymake-perl-load)
-
-;; Makes perltidy-mode automatic for cperl-mode
-(defun perltidy-perl-load () (perltidy-mode t))
-(add-hook 'cperl-mode-hook 'perltidy-perl-load)
-
-;; flyspell for cperl-mode
-(add-hook 'cperl-mode-hook 'flyspell-prog-mode)
 
 ;; elscreen
 (elscreen-set-prefix-key "\C-t")
-
-;; c-eldoc
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
-
-;; hideshow and hideif
-(add-hook 'c-mode-hook 'hs-minor-mode)
-(add-hook 'c++-mode-hook 'hs-minor-mode)
-(add-hook 'c-mode-hook 'hide-ifdef-mode)
-(add-hook 'c++-mode-hook 'hide-ifdef-mode)
-
-;; for C
-(setq c-basic-offset 8)
 
 (load "myconf.el")
 
