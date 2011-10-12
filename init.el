@@ -1,6 +1,3 @@
-;; (set-face-attribute 'default nil
-;;                     :family "Inconsolata"
-;;                     :height 120)
 (set-face-attribute 'default nil
                     :family "Ricty"
                     :height 140)
@@ -22,12 +19,6 @@
 ;; (set-fontset-font "fontset-default"
 ;;                   'katakana-jisx0201
 ;;                   '("モトヤLマルベリ3等幅" . "jisx0201.*"))
-;; (set-fontset-font "fontset-default"
-;;                   'japanese-jisx0208
-;;                   '("Ricty" . "jisx0208.*"))
-;; (set-fontset-font "fontset-default"
-;;                   'katakana-jisx0201
-;;                   '("Ricty" . "jisx0201.*"))
 
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
