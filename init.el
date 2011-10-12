@@ -196,5 +196,12 @@
 ;; elscreen
 (elscreen-set-prefix-key "\C-t")
 
+
+
+;; flyspell for git commit
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
+
+
+
 (load "myconf.el")
 
