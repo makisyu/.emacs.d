@@ -256,7 +256,13 @@ Return the defined symbol as a special spp lex token."
 	   (raw-stream
 	    (semantic-lex-spp-stream-for-macro (save-excursion
 						 (semantic-c-end-of-macro)
-						 (point))))
+						 ;; HACK - If there's a C comment after
+						 ;; the macro, do not parse it.
+						 (if (looking-back "/\\*.*")
+						     (progn
+						       (goto-char (match-beginning 0))
+						       (1- (point)))
+						   (point)))))
 	   )
 
       ;; Only do argument checking if the paren was immediatly after
@@ -304,9 +310,10 @@ Moves completely over balanced #if blocks."
       (cond
        ((looking-at "^\\s-*#\\s-*if")
 	;; We found a nested if.  Skip it.
-	;; @TODO - can we use the new c-scan-conditionals
-	;; - available in Emacs/CVS as of AUG 2009
-	(c-forward-conditional 1))
+	(if (fboundp 'c-scan-conditionals)
+	    (goto-char (c-scan-conditionals 1))
+	  ;; For older Emacsen, but this will set the mark.
+	  (c-forward-conditional 1)))
        ((looking-at "^\\s-*#\\s-*elif")
 	;; We need to let the preprocessor analyze this one.
 	(beginning-of-line)
@@ -2057,6 +2064,8 @@ actually in their parent which is not accessible.")
 
   (setq semantic-lex-analyzer #'semantic-c-lexer)
   (add-hook 'semantic-lex-reset-hooks 'semantic-lex-spp-reset-hook nil t)
+  (when (eq major-mode 'c++-mode)
+    (add-to-list 'semantic-lex-c-preprocessor-symbol-map '("__cplusplus" . "")))
   )
 
 ;;;###autoload
