@@ -35,14 +35,10 @@
 (add-to-list 'load-path "~/.emacs.d/cedet/speedbar")
 (add-to-list 'load-path "~/.emacs.d/cedet/srecode")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
-(add-to-list 'load-path "~/.emacs.d/auctex")
-(add-to-list 'load-path "~/.emacs.d/auctex/preview")
 
 (load "brackets.el")
 (load "leim-list.el")
 (load "cedet.el")
-(load "auctex.el")
-(load "preview-latex.el")
 
 (require 'flymake)
 (require 'auto-install)
@@ -69,13 +65,6 @@
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
-
-
-
-;; AUCTeX
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 
 
 
