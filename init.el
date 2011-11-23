@@ -26,19 +26,11 @@
 (add-to-list 'load-path "~/.emacs.d/anthy")
 (add-to-list 'load-path "~/.emacs.d/apel")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
-(add-to-list 'load-path "~/.emacs.d/cedet/common")
-(add-to-list 'load-path "~/.emacs.d/cedet/cogre")
-(add-to-list 'load-path "~/.emacs.d/cedet/contrib")
-(add-to-list 'load-path "~/.emacs.d/cedet/ede")
-(add-to-list 'load-path "~/.emacs.d/cedet/eieio")
-(add-to-list 'load-path "~/.emacs.d/cedet/semantic")
-(add-to-list 'load-path "~/.emacs.d/cedet/speedbar")
-(add-to-list 'load-path "~/.emacs.d/cedet/srecode")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 
 (load "brackets.el")
 (load "leim-list.el")
-(load "cedet.el")
+(load "cedet")
 
 (require 'flymake)
 (require 'auto-install)
@@ -145,22 +137,8 @@
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
 ;; cedet
 (global-ede-mode 1)
-(semantic-load-enable-code-helpers)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(global-semantic-decoration-mode t nil (semantic-decorate-mode))
- '(global-semantic-highlight-edits-mode t nil (semantic-util-modes))
- '(global-semantic-highlight-func-mode t nil (semantic-util-modes))
- '(global-semantic-idle-scheduler-mode t nil (semantic-idle))
- '(global-semantic-mru-bookmark-mode t nil (semantic-util-modes))
- '(global-semantic-show-parser-state-mode t nil (semantic-util-modes))
- '(global-semantic-show-unmatched-syntax-mode nil nil (semantic-util-modes))
- '(global-semantic-stickyfunc-mode nil nil (semantic-util-modes))
- '(global-senator-minor-mode t nil (senator))
- '(which-function-mode t))
+(semantic-mode 1)
+(setq ac-sources (append ac-sources '(ac-source-semantic)))
 
 
 
