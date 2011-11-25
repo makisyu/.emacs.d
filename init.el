@@ -18,7 +18,6 @@
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/anthy")
 (add-to-list 'load-path "~/.emacs.d/apel")
-(add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 
 (load "brackets")
@@ -35,11 +34,9 @@
 (require 'elscreen-dnd)
 (require 'elscreen-dired)
 (require 'elscreen-speedbar)
-(require 'color-theme)
 (require 'hideif)
 (require 'hideshow)
 (require 'dired)
-(require 'perltidy-mode)
 (require 'ispell)
 (require 'flyspell)
 (require 'perl-completion)
@@ -78,8 +75,6 @@
 (setq cperl-indent-level 4
       cperl-continued-statement-offset 4
       cperl-highlight-variables-indiscriminately t)
-;; perltidy-mode
-(setq perltidy-bin "perltidy -pbp -q")
 ;; perl-completion-mode
 (add-hook 'cperl-mode-hook
           (lambda ()
