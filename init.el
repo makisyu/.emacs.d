@@ -1,7 +1,3 @@
-(set-face-attribute 'default nil
-                    :family "Ricty"
-                    :height 140)
-
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
 (set-scroll-bar-mode 'right)
@@ -16,9 +12,6 @@
 (recentf-mode t)
 (tool-bar-mode 0)
 (global-set-key "\C-m" 'newline-and-indent)
-
-(set-frame-parameter nil 'fullscreen 'maximized)
-(set-frame-parameter nil 'alpha 80)
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/elscreen")
@@ -57,12 +50,6 @@
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
-
-
-
-;; color-theme
-(color-theme-initialize)
-(color-theme-clarity)
 
 
 
