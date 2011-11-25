@@ -28,9 +28,8 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 
-(load "brackets.el")
-(load "leim-list.el")
-(load "cedet")
+(load "brackets")
+(load "leim-list")
 
 (require 'flymake)
 (require 'auto-install)
@@ -51,6 +50,7 @@
 (require 'ispell)
 (require 'flyspell)
 (require 'perl-completion)
+(require 'cedet)
 
 
 
