@@ -141,7 +141,6 @@
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
 
 
-
 ;; elscreen
 (elscreen-set-prefix-key "\C-t")
 
