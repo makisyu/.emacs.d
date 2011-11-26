@@ -1,6 +1,6 @@
 (set-face-attribute 'default nil
                     :family "Ricty"
-                    :height 140)
+                    :height 130)
 
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
@@ -16,12 +16,12 @@
 (recentf-mode t)
 (tool-bar-mode 0)
 (global-set-key "\C-m" 'newline-and-indent)
+(global-set-key "\C-x\C-b" 'bs-show)
 
 (set-frame-parameter nil 'fullscreen 'maximized)
 (set-frame-parameter nil 'alpha 80)
 
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/elscreen")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/anthy")
 (add-to-list 'load-path "~/.emacs.d/apel")
@@ -37,11 +37,6 @@
 (require 'eldoc-extension)
 (require 'c-eldoc)
 (require 'auto-complete-config)
-(require 'elscreen)
-(require 'elscreen-gf)
-(require 'elscreen-dnd)
-(require 'elscreen-dired)
-(require 'elscreen-speedbar)
 (require 'color-theme)
 (require 'hideif)
 (require 'hideshow)
@@ -141,10 +136,6 @@
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
 
 
-;; elscreen
-(elscreen-set-prefix-key "\C-t")
-
-
 
 ;; flyspell for git commit
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
@@ -152,4 +143,3 @@
 
 
 (load "myconf.el")
-
