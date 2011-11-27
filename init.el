@@ -31,21 +31,14 @@
 (load "brackets")
 (load "leim-list")
 
-(require 'flymake)
 (require 'auto-install)
 (require 'eldoc)
 (require 'eldoc-extension)
 (require 'c-eldoc)
 (require 'auto-complete-config)
 (require 'color-theme)
-(require 'hideif)
-(require 'hideshow)
-(require 'dired)
 (require 'perltidy-mode)
-(require 'ispell)
-(require 'flyspell)
 (require 'perl-completion)
-(require 'cedet)
 
 
 
@@ -56,8 +49,16 @@
 
 
 ;; color-theme
-(color-theme-initialize)
-(color-theme-clarity)
+(if (window-system)
+    (progn
+      (color-theme-initialize)
+      (color-theme-clarity)))
+(woman-default-faces)
+(custom-set-faces
+ '(woman-addition
+   ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
+ '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
+ '(woman-italic ((t (:inherit italic :underline t :weight bold)))))
 
 
 
