@@ -53,13 +53,13 @@
 (if (window-system)
     (progn
       (color-theme-initialize)
-      (color-theme-clarity)))
-(woman-default-faces)
-;; (custom-set-faces
-;;  '(woman-addition
-;;    ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
-;;  '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
-;;  '(woman-italic ((t (:inherit italic :underline t :weight bold)))))
+      (color-theme-clarity)
+      (woman-default-faces)
+      (custom-set-faces
+       '(woman-addition
+         ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
+       '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
+       '(woman-italic ((t (:inherit italic :underline t :weight bold)))))))
 
 
 
@@ -134,12 +134,38 @@
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
+;; auto insert of brackets
+(add-hook 'c++-mode-hook
+          '(lambda()
+             (progn
+               (define-key c++-mode-map "{" 'insert-braces)
+               (define-key c++-mode-map "(" 'insert-parens)
+               (define-key c++-mode-map "\"" 'insert-double-quotation)
+               (define-key c++-mode-map "'" 'insert-single-quotation)
+               (define-key c++-mode-map "[" 'insert-brackets)
+               (define-key c++-mode-map "\C-c}" 'insert-braces-region)
+               (define-key c++-mode-map "\C-c)" 'insert-parens-region)
+               (define-key c++-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key c++-mode-map "\C-c\""
+                 'insert-double-quotation-region))))
+(add-hook 'c-mode-hook
+          '(lambda()
+             (progn
+               (define-key c-mode-map "{" 'insert-braces)
+               (define-key c-mode-map "(" 'insert-parens)
+               (define-key c-mode-map "\"" 'insert-double-quotation)
+               (define-key c-mode-map "'" 'insert-single-quotation)
+               (define-key c-mode-map "[" 'insert-brackets)
+               (define-key c-mode-map "\C-c}" 'insert-braces-region)
+               (define-key c-mode-map "\C-c)" 'insert-parens-region)
+               (define-key c-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key c-mode-map "\C-c\""
+                 'insert-double-quotation-region))))
 ;; cedet
 (setq semantic-load-turn-useful-things-on t)
 (setq semantic-load-turn-everything-on t)
 (setq semantic-default-submodes
-      '(
-        global-semanticdb-minor-mode
+      '(global-semanticdb-minor-mode
         global-semantic-idle-scheduler-mode
         global-semantic-idle-summary-mode
         global-semantic-decoration-mode
