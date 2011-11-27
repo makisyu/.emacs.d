@@ -20,7 +20,7 @@
 (global-set-key "\C-x\C-b" 'bs-show)
 
 (set-frame-parameter nil 'fullscreen 'maximized)
-(set-frame-parameter nil 'alpha 80)
+(set-frame-parameter nil 'alpha 90)
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
