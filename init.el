@@ -15,6 +15,7 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
+
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-x\C-b" 'bs-show)
 
@@ -54,11 +55,11 @@
       (color-theme-initialize)
       (color-theme-clarity)))
 (woman-default-faces)
-(custom-set-faces
- '(woman-addition
-   ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
- '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
- '(woman-italic ((t (:inherit italic :underline t :weight bold)))))
+;; (custom-set-faces
+;;  '(woman-addition
+;;    ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
+;;  '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
+;;  '(woman-italic ((t (:inherit italic :underline t :weight bold)))))
 
 
 
@@ -72,6 +73,8 @@
 ;; auto-complete
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
 (ac-config-default)
+(setq ac-ignore-case t)
+(setq ac-menu-height 20)
 
 
 
@@ -132,9 +135,23 @@
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
 ;; cedet
+(setq semantic-load-turn-useful-things-on t)
+(setq semantic-load-turn-everything-on t)
+(setq semantic-default-submodes
+      '(
+        global-semanticdb-minor-mode
+        global-semantic-idle-scheduler-mode
+        global-semantic-idle-summary-mode
+        global-semantic-decoration-mode
+        global-semantic-highlight-func-mode))
+(setq semantic-idle-work-update-headers-flag t)
+(require 'cedet)
 (global-ede-mode 1)
 (semantic-mode 1)
+(setq semanticdb-project-roots '("~/"))
+(semantic-gcc-setup)
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
+(setq ac-sources (append ac-sources '(ac-source-semantic-raw)))
 
 
 
