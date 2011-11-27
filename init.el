@@ -53,7 +53,7 @@
 (if (window-system)
     (progn
       (color-theme-initialize)
-      (color-theme-clarity)
+      (color-theme-dark-laptop)
       (woman-default-faces)
       (custom-set-faces
        '(woman-addition
