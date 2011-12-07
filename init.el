@@ -15,6 +15,8 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
+(global-hl-line-mode t)
+(setq hl-line-face 'underline)
 
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-x\C-b" 'bs-show)
