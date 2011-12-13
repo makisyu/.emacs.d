@@ -1,7 +1,3 @@
-(set-face-attribute 'default nil
-                    :family "Ricty"
-                    :height 130)
-
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
 (set-scroll-bar-mode 'right)
@@ -15,12 +11,8 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
-
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-x\C-b" 'bs-show)
-
-(set-frame-parameter nil 'fullscreen 'maximized)
-(set-frame-parameter nil 'alpha 90)
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
