@@ -15,8 +15,6 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
-(global-hl-line-mode t)
-(setq hl-line-face 'underline)
 
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-x\C-b" 'bs-show)
@@ -100,20 +98,6 @@
             (perl-completion-mode t)
             (setq ac-sources
                   '(ac-source-perl-completion))))
-;; brackets for perl
-(add-hook 'cperl-mode-hook
-          '(lambda()
-             (progn
-               (define-key cperl-mode-map "{" 'insert-braces)
-               (define-key cperl-mode-map "(" 'insert-parens)
-               (define-key cperl-mode-map "\"" 'insert-double-quotation)
-               (define-key cperl-mode-map "'" 'insert-single-quotation)
-               (define-key cperl-mode-map "[" 'insert-brackets)
-               (define-key cperl-mode-map "\C-c}" 'insert-braces-region)
-               (define-key cperl-mode-map "\C-c)" 'insert-parens-region)
-               (define-key cperl-mode-map "\C-c]" 'insert-brackets-region)
-               (define-key cperl-mode-map "\C-c\""
-                 'insert-double-quotation-region))))
 ;; flymake for perl
 (add-hook 'cperl-mode-hook (lambda () (flymake-mode t)))
 ;; Makes perltidy-mode automatic for cperl-mode
@@ -136,33 +120,6 @@
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
-;; auto insert of brackets
-(add-hook 'c++-mode-hook
-          '(lambda()
-             (progn
-               (define-key c++-mode-map "{" 'insert-braces)
-               (define-key c++-mode-map "(" 'insert-parens)
-               (define-key c++-mode-map "\"" 'insert-double-quotation)
-               (define-key c++-mode-map "'" 'insert-single-quotation)
-               (define-key c++-mode-map "[" 'insert-brackets)
-               (define-key c++-mode-map "\C-c}" 'insert-braces-region)
-               (define-key c++-mode-map "\C-c)" 'insert-parens-region)
-               (define-key c++-mode-map "\C-c]" 'insert-brackets-region)
-               (define-key c++-mode-map "\C-c\""
-                 'insert-double-quotation-region))))
-(add-hook 'c-mode-hook
-          '(lambda()
-             (progn
-               (define-key c-mode-map "{" 'insert-braces)
-               (define-key c-mode-map "(" 'insert-parens)
-               (define-key c-mode-map "\"" 'insert-double-quotation)
-               (define-key c-mode-map "'" 'insert-single-quotation)
-               (define-key c-mode-map "[" 'insert-brackets)
-               (define-key c-mode-map "\C-c}" 'insert-braces-region)
-               (define-key c-mode-map "\C-c)" 'insert-parens-region)
-               (define-key c-mode-map "\C-c]" 'insert-brackets-region)
-               (define-key c-mode-map "\C-c\""
-                 'insert-double-quotation-region))))
 ;; cedet
 (setq semantic-load-turn-useful-things-on t)
 (setq semantic-load-turn-everything-on t)
