@@ -1,3 +1,7 @@
+(set-face-attribute 'default nil
+                    :family "Ricty"
+                    :height 140)
+
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
 (set-scroll-bar-mode 'right)
