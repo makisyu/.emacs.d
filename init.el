@@ -12,41 +12,49 @@
 (recentf-mode t)
 (tool-bar-mode 0)
 (global-set-key "\C-m" 'newline-and-indent)
+(global-set-key "\C-x\C-b" 'bs-show)
+
+(set-frame-parameter nil 'fullscreen 'maximized)
+(set-frame-parameter nil 'alpha 90)
 
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/elscreen")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/anthy")
 (add-to-list 'load-path "~/.emacs.d/apel")
+(add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 
 (load "brackets")
 (load "leim-list")
 
-(require 'flymake)
 (require 'auto-install)
 (require 'eldoc)
 (require 'eldoc-extension)
 (require 'c-eldoc)
 (require 'auto-complete-config)
-(require 'elscreen)
-(require 'elscreen-gf)
-(require 'elscreen-dnd)
-(require 'elscreen-dired)
-(require 'elscreen-speedbar)
-(require 'hideif)
-(require 'hideshow)
-(require 'dired)
-(require 'ispell)
-(require 'flyspell)
+(require 'color-theme)
+(require 'perltidy-mode)
 (require 'perl-completion)
-(require 'cedet)
 
 
 
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
+
+
+
+;; color-theme
+(if (window-system)
+    (progn
+      (color-theme-initialize)
+      (color-theme-dark-laptop)
+      (woman-default-faces)
+      (custom-set-faces
+       '(woman-addition
+         ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
+       '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
+       '(woman-italic ((t (:inherit italic :underline t :weight bold)))))))
 
 
 
@@ -60,6 +68,8 @@
 ;; auto-complete
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
 (ac-config-default)
+(setq ac-ignore-case t)
+(setq ac-menu-height 20)
 
 
 
@@ -75,6 +85,8 @@
 (setq cperl-indent-level 4
       cperl-continued-statement-offset 4
       cperl-highlight-variables-indiscriminately t)
+;; perltidy-mode
+(setq perltidy-bin "perltidy -pbp -q")
 ;; perl-completion-mode
 (add-hook 'cperl-mode-hook
           (lambda ()
@@ -117,14 +129,50 @@
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
+;; auto insert of brackets
+(add-hook 'c++-mode-hook
+          '(lambda()
+             (progn
+               (define-key c++-mode-map "{" 'insert-braces)
+               (define-key c++-mode-map "(" 'insert-parens)
+               (define-key c++-mode-map "\"" 'insert-double-quotation)
+               (define-key c++-mode-map "'" 'insert-single-quotation)
+               (define-key c++-mode-map "[" 'insert-brackets)
+               (define-key c++-mode-map "\C-c}" 'insert-braces-region)
+               (define-key c++-mode-map "\C-c)" 'insert-parens-region)
+               (define-key c++-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key c++-mode-map "\C-c\""
+                 'insert-double-quotation-region))))
+(add-hook 'c-mode-hook
+          '(lambda()
+             (progn
+               (define-key c-mode-map "{" 'insert-braces)
+               (define-key c-mode-map "(" 'insert-parens)
+               (define-key c-mode-map "\"" 'insert-double-quotation)
+               (define-key c-mode-map "'" 'insert-single-quotation)
+               (define-key c-mode-map "[" 'insert-brackets)
+               (define-key c-mode-map "\C-c}" 'insert-braces-region)
+               (define-key c-mode-map "\C-c)" 'insert-parens-region)
+               (define-key c-mode-map "\C-c]" 'insert-brackets-region)
+               (define-key c-mode-map "\C-c\""
+                 'insert-double-quotation-region))))
 ;; cedet
+(setq semantic-load-turn-useful-things-on t)
+(setq semantic-load-turn-everything-on t)
+(setq semantic-default-submodes
+      '(global-semanticdb-minor-mode
+        global-semantic-idle-scheduler-mode
+        global-semantic-idle-summary-mode
+        global-semantic-decoration-mode
+        global-semantic-highlight-func-mode))
+(setq semantic-idle-work-update-headers-flag t)
+(require 'cedet)
 (global-ede-mode 1)
 (semantic-mode 1)
+(setq semanticdb-project-roots '("~/"))
+(semantic-gcc-setup)
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
-
-
-;; elscreen
-(elscreen-set-prefix-key "\C-t")
+(setq ac-sources (append ac-sources '(ac-source-semantic-raw)))
 
 
 
@@ -134,4 +182,3 @@
 
 
 (load "myconf.el")
-
