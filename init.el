@@ -36,13 +36,20 @@
 (require 'color-theme)
 (require 'perltidy-mode)
 (require 'perl-completion)
-
+(require 'langtool)
 
 
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
 
+
+;; LanguageTool
+(setq langtool-language-tool-jar "~/LanguageTool/LanguageTool.jar")
+
+
+;; LaTeX mode
+(add-hook 'latex-mode-hook 'flyspell-prog-mode)
 
 
 ;; color-theme
