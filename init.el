@@ -21,17 +21,12 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/anthy")
-(add-to-list 'load-path "~/.emacs.d/apel")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
-(add-to-list 'load-path "~/.emacs.d/perltidy-mode")
 
 (load "brackets")
 (load "leim-list")
 
-(require 'auto-install)
-(require 'eldoc)
-(require 'eldoc-extension)
-(require 'c-eldoc)
+(require 'dired)
 (require 'auto-complete-config)
 (require 'color-theme)
 (require 'perltidy-mode)
@@ -115,9 +110,6 @@
 ;; flyspell for C and C++ mode
 (add-hook 'c-mode-hook 'flyspell-prog-mode)
 (add-hook 'c++-mode-hook 'flyspell-prog-mode)
-;; c-eldoc
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-(add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode)
 ;; hideshow and hideif
 (add-hook 'c-mode-hook 'hs-minor-mode)
 (add-hook 'c++-mode-hook 'hs-minor-mode)
