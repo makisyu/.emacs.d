@@ -148,4 +148,9 @@
 
 
 
+;; for auto-complete with flyspell
+(ac-flyspell-workaround)
+
+
+
 (load "myconf.el")
