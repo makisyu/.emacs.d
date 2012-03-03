@@ -21,14 +21,14 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/anthy")
-(add-to-list 'load-path "~/.emacs.d/color-theme")
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 
 (load "brackets")
 (load "leim-list")
 
 (require 'dired)
 (require 'auto-complete-config)
-(require 'color-theme)
 (require 'perltidy-mode)
 (require 'perl-completion)
 (require 'langtool)
@@ -49,10 +49,7 @@
 
 ;; color-theme
 (if (window-system)
-    (progn
-      (color-theme-initialize)
-      (color-theme-dark-laptop)))
-
+    (load-theme 'solarized-dark t))
 
 
 ;; dired
