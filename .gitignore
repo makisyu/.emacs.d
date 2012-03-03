@@ -2,6 +2,5 @@
 *.elc
 auto-save-list/
 ac-comphist.dat
-myconf.el
 ede-projects.el
 semanticdb/

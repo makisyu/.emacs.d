@@ -1,6 +1,6 @@
 (set-face-attribute 'default nil
                     :family "Ricty"
-                    :height 140)
+                    :height 120)
 
 (setq-default indent-tabs-mode nil)
 (show-paren-mode t)
@@ -51,13 +51,7 @@
 (if (window-system)
     (progn
       (color-theme-initialize)
-      (color-theme-dark-laptop)
-      (woman-default-faces)
-      (custom-set-faces
-       '(woman-addition
-         ((t (:inherit font-lock-builtin-face :foreground "deep sky blue"))))
-       '(woman-bold ((t (:inherit bold :foreground "dodger blue"))))
-       '(woman-italic ((t (:inherit italic :underline t :weight bold)))))))
+      (color-theme-dark-laptop)))
 
 
 
@@ -142,7 +136,3 @@
 
 ;; for auto-complete with flyspell
 (ac-flyspell-workaround)
-
-
-
-(load "myconf.el")
