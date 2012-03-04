@@ -17,6 +17,7 @@
 (tool-bar-mode 0)
 (global-set-key "\C-m" 'newline-and-indent)
 (global-set-key "\C-x\C-b" 'bs-show)
+(set-frame-parameter (selected-frame) 'alpha '(0.95))
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
@@ -96,33 +97,22 @@
 
 
 
-;; for C
+;; for C and C++
 (setq c-basic-offset 8)
 ;; flyspell for C and C++ mode
 (add-hook 'c-mode-hook 'flyspell-prog-mode)
 (add-hook 'c++-mode-hook 'flyspell-prog-mode)
-;; hideshow and hideif
+;; hideshow
 (add-hook 'c-mode-hook 'hs-minor-mode)
 (add-hook 'c++-mode-hook 'hs-minor-mode)
+;; hide-if-def
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
 ;; cedet
-(setq semantic-load-turn-useful-things-on t)
-(setq semantic-load-turn-everything-on t)
-(setq semantic-default-submodes
-      '(global-semanticdb-minor-mode
-        global-semantic-idle-scheduler-mode
-        global-semantic-idle-summary-mode
-        global-semantic-decoration-mode
-        global-semantic-highlight-func-mode))
-(setq semantic-idle-work-update-headers-flag t)
-(require 'cedet)
-(global-ede-mode 1)
-(semantic-mode 1)
-(setq semanticdb-project-roots '("~/"))
+(global-ede-mode t)
+(semantic-mode t)
 (semantic-gcc-setup)
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
-(setq ac-sources (append ac-sources '(ac-source-semantic-raw)))
 
 
 
