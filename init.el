@@ -60,19 +60,20 @@
 (define-key dired-mode-map "a" 'dired-advertised-find-file)
 
 
-
 ;; auto-complete
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
 (ac-config-default)
 (setq ac-ignore-case t)
 (setq ac-menu-height 20)
-
+(setq ac-auto-show-menu 0.5)
+(setq ac-use-menu-map t)
+(define-key ac-menu-map "\C-n" 'ac-next)
+(define-key ac-menu-map "\C-p" 'ac-previous)
 
 
 ;; anthy
 (setq default-input-method "japanese-anthy")
 (setq anthy-wide-space " ")
-
 
 
 ;;; cperl-mode is preferred to perl-mode
@@ -87,8 +88,7 @@
 (add-hook 'cperl-mode-hook
           (lambda ()
             (perl-completion-mode t)
-            (setq ac-sources
-                  '(ac-source-perl-completion))))
+            (setq ac-sources '(ac-source-perl-completion))))
 ;; flymake for perl
 (add-hook 'cperl-mode-hook (lambda () (flymake-mode t)))
 ;; Makes perltidy-mode automatic for cperl-mode
@@ -116,12 +116,12 @@
 (semantic-mode t)
 (semantic-gcc-setup)
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
-
+(add-hook 'c-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
+(add-hook 'c++-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
 
 
 ;; flyspell for git commit
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
-
 
 
 ;; for auto-complete with flyspell
