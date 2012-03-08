@@ -1,3 +1,18 @@
+(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/anthy")
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+
+(load "brackets")
+(load "leim-list")
+
+(require 'dired)
+(require 'auto-complete-config)
+(require 'perltidy-mode)
+(require 'perl-completion)
+(require 'langtool)
+
 (set-face-attribute 'default nil
                     :family "Ricty"
                     :height 120)
@@ -15,24 +30,11 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
-(global-set-key "\C-m" 'newline-and-indent)
+(set-frame-parameter (selected-frame) 'alpha '(0.85))
+
+
+;; bs-show
 (global-set-key "\C-x\C-b" 'bs-show)
-(set-frame-parameter (selected-frame) 'alpha '(0.95))
-
-(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/anthy")
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
-
-(load "brackets")
-(load "leim-list")
-
-(require 'dired)
-(require 'auto-complete-config)
-(require 'perltidy-mode)
-(require 'perl-completion)
-(require 'langtool)
 
 
 ;; ispell
