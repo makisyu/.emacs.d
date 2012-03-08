@@ -17,7 +17,6 @@
                     :family "Ricty"
                     :height 120)
 
-(setq-default indent-tabs-mode nil)
 (show-paren-mode t)
 (set-scroll-bar-mode 'right)
 (setq scroll-step 1)
@@ -98,9 +97,11 @@
 (add-hook 'cperl-mode-hook 'flyspell-prog-mode)
 
 
-
 ;; for C and C++
-(setq c-basic-offset 8)
+(add-hook 'c-mode-hook (lambda () (c-set-style "stroustrup")))
+(add-hook 'c++-mode-hook (lambda () (c-set-style "stroustrup")))
+(add-hook 'c-mode-hook (lambda () (setq c-tab-always-indent t)))
+(add-hook 'c++-mode-hook (lambda () (setq c-tab-always-indent t)))
 ;; flyspell for C and C++ mode
 (add-hook 'c-mode-hook 'flyspell-prog-mode)
 (add-hook 'c++-mode-hook 'flyspell-prog-mode)
