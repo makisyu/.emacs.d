@@ -121,3 +121,9 @@
 ;; mozc
 (require 'mozc)
 (setq default-input-method "japanese-mozc")
+
+
+;; ecb
+(setq stack-trace-on-error t)
+(custom-set-variables
+ '(ecb-options-version "2.40"))
