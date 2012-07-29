@@ -1,11 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/anthy")
-
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 
 (load "brackets")
-(load "leim-list")
+
 
 (require 'dired)
 (require 'auto-complete-config)
@@ -71,11 +69,6 @@
 (define-key ac-menu-map "\C-p" 'ac-previous)
 
 
-;; anthy
-(setq default-input-method "japanese-anthy")
-(setq anthy-wide-space " ")
-
-
 ;;; cperl-mode is preferred to perl-mode
 ;;; "Brevity is the soul of wit" <foo at acm.org>                               
 (defalias 'perl-mode 'cperl-mode)
@@ -126,3 +119,8 @@
 
 ;; for auto-complete with flyspell
 (ac-flyspell-workaround)
+
+
+;; mozc
+(require 'mozc)
+(setq default-input-method "japanese-mozc")
