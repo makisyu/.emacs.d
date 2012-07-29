@@ -1,6 +1,0 @@
-[submodule "auto-complete"]
-	path = auto-complete
-	url = git://github.com/m2ym/auto-complete.git
-[submodule "emacs-color-theme-solarized"]
-	path = emacs-color-theme-solarized
-	url = git://github.com/sellout/emacs-color-theme-solarized.git
