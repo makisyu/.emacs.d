@@ -4,13 +4,6 @@
 
 (load "brackets")
 
-
-(require 'dired)
-(require 'auto-complete-config)
-(require 'perltidy-mode)
-(require 'perl-completion)
-(require 'langtool)
-
 (set-face-attribute 'default nil
                     :family "Ricty"
                     :height 120)
@@ -27,7 +20,7 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
-(set-frame-parameter (selected-frame) 'alpha '(0.85))
+(set-frame-parameter (selected-frame) 'alpha '(0.9))
 
 
 ;; bs-show
@@ -40,6 +33,7 @@
 
 
 ;; LanguageTool
+(require 'langtool)
 (setq langtool-language-tool-jar "~/LanguageTool/LanguageTool.jar")
 
 
@@ -48,17 +42,18 @@
 
 
 ;; color-theme
-(if (window-system)
-    (load-theme 'solarized-dark t))
+(load-theme 'solarized-dark t)
 
 
 ;; dired
+(require 'dired)
 (put 'dired-find-alternate-file 'disabled nil)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map "a" 'dired-advertised-find-file)
 
 
 ;; auto-complete
+(require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
 (ac-config-default)
 (setq ac-ignore-case t)
@@ -76,8 +71,10 @@
       cperl-continued-statement-offset 4
       cperl-highlight-variables-indiscriminately t)
 ;; perltidy-mode
+(require 'perltidy-mode)
 (setq perltidy-bin "perltidy -pbp -q")
 ;; perl-completion-mode
+(require 'perl-completion)
 (add-hook 'cperl-mode-hook
           (lambda ()
             (perl-completion-mode t)
