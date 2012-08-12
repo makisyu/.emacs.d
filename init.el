@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+(add-to-list 'load-path "~/.emacs.d/markdown-mode")
 
 (load "brackets")
 
@@ -127,3 +128,7 @@
 (setq stack-trace-on-error t)
 (custom-set-variables
  '(ecb-options-version "2.40"))
+
+
+;; markdown-mode
+(require 'markdown-mode)
