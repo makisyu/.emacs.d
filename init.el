@@ -40,10 +40,6 @@
 (setq langtool-language-tool-jar "~/LanguageTool/LanguageTool.jar")
 
 
-;; LaTeX mode
-(add-hook 'latex-mode-hook 'flyspell-prog-mode)
-
-
 ;; color-theme
 (load-theme 'solarized-dark t)
 
