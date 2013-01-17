@@ -1,5 +1,9 @@
 # README
 These packages are required:
-* auto-complete,
-* emacs-color-theme-solarized,
-* markdown-mode.
+* auto-complete/auto-complete
+* auto-complete/popup-el
+* sellout/macs-color-theme-solarized
+* emacs-mozc
+* defunkt/markdown-mode
+* yoshiki/yaml-mode
+
