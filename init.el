@@ -23,7 +23,6 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (tool-bar-mode 0)
-(set-frame-parameter (selected-frame) 'alpha '(0.9))
 
 
 ;; bs-show
