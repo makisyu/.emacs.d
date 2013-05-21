@@ -3,7 +3,6 @@
 (add-to-list 'load-path "~/.emacs.d/markdown-mode")
 (add-to-list 'load-path "~/.emacs.d/popup-el")
 (add-to-list 'load-path "~/.emacs.d/yaml-mode")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
 
 (load "brackets")
 
@@ -40,7 +39,15 @@
 
 
 ;; color-theme
-(load-theme 'solarized-dark t)
+(if (> emacs-major-version 23)
+    (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+           (load-theme 'solarized-dark t))
+    (progn (add-to-list 'load-path "~/.emacs.d/color-theme")
+           (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+           (require 'color-theme)
+           (require 'color-theme-solarized)
+           (color-theme-initialize)
+           (color-theme-solarized-dark)))
 
 
 ;; dired
@@ -98,12 +105,13 @@
 (add-hook 'c-mode-hook 'hide-ifdef-mode)
 (add-hook 'c++-mode-hook 'hide-ifdef-mode)
 ;; cedet
-(global-ede-mode t)
-(semantic-mode t)
-(semantic-gcc-setup)
-(setq ac-sources (append ac-sources '(ac-source-semantic)))
-(add-hook 'c-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
-(add-hook 'c++-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
+(when (require 'cedet nil t)
+      (global-ede-mode t)
+      (semantic-mode t)
+      (semantic-gcc-setup)
+      (setq ac-sources (append ac-sources '(ac-source-semantic)))
+      (add-hook 'c-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
+      (add-hook 'c++-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic))))
 
 
 ;; flyspell for git commit
@@ -115,8 +123,8 @@
 
 
 ;; mozc
-(require 'mozc)
-(setq default-input-method "japanese-mozc")
+(when (require 'mozci nil t)
+      (setq default-input-method "japanese-mozc"))
 
 
 ;; ecb
