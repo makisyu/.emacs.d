@@ -1,17 +1,14 @@
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/markdown-mode")
-(add-to-list 'load-path "~/.emacs.d/popup-el")
-(add-to-list 'load-path "~/.emacs.d/yaml-mode")
-
-(load "brackets")
 
 (set-face-attribute 'default nil
                     :family "Ricty"
                     :height 120)
 
+(if (eq window-system 'x)
+    (progn (set-scroll-bar-mode 'right)
+           (tool-bar-mode 0)))
+
 (show-paren-mode t)
-(set-scroll-bar-mode 'right)
 (setq scroll-step 1)
 (setq make-backup-files nil)
 (setq completion-ignore-case t)
@@ -21,7 +18,6 @@
 (column-number-mode t)
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
-(tool-bar-mode 0)
 
 
 ;; bs-show
@@ -42,7 +38,8 @@
 (if (> emacs-major-version 23)
     (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
            (load-theme 'solarized-dark t))
-    (progn (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+    (progn (add-to-list 'load-path "~/.emacs.d/color-theme")
+           (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
            (require 'color-theme)
            (require 'color-theme-solarized)
            (color-theme-initialize)
@@ -57,21 +54,23 @@
 
 
 ;; auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
-(ac-config-default)
-(setq ac-ignore-case nil)
-(setq ac-use-menu-map t)
-(define-key ac-menu-map "\C-n" 'ac-next)
-(define-key ac-menu-map "\C-p" 'ac-previous)
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/popup-el")
+(when (require 'auto-complete-config nil t)
+      (progn (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
+             (ac-config-default)
+             (setq ac-ignore-case nil)
+             (setq ac-use-menu-map t)
+             (define-key ac-menu-map "\C-n" 'ac-next)
+             (define-key ac-menu-map "\C-p" 'ac-previous)))
 
 
 ;;; cperl-mode is preferred to perl-mode
 ;;; "Brevity is the soul of wit" <foo at acm.org>                               
 (defalias 'perl-mode 'cperl-mode)
-(setq cperl-indent-level 4
-      cperl-continued-statement-offset 4
-      cperl-highlight-variables-indiscriminately t)
+(setq cperl-indent-level 4)
+(setq cperl-continued-statement-offset 4)
+(setq cperl-highlight-variables-indiscriminately t)
 ;; perltidy-mode
 (require 'perltidy-mode)
 (setq perltidy-bin "perltidy -pbp -q")
@@ -107,10 +106,10 @@
 (when (require 'cedet nil t)
       (global-ede-mode t)
       (semantic-mode t)
-      (semantic-gcc-setup)
-      (setq ac-sources (append ac-sources '(ac-source-semantic)))
-      (add-hook 'c-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
-      (add-hook 'c++-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic))))
+      (semantic-gcc-setup))
+(setq ac-sources (append ac-sources '(ac-source-semantic)))
+(add-hook 'c-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
+(add-hook 'c++-mode-hook (lambda () (local-set-key (kbd "C-c .") 'ac-complete-semantic)))
 
 
 ;; flyspell for git commit
@@ -122,21 +121,23 @@
 
 
 ;; mozc
-(when (require 'mozci nil t)
+(when (require 'mozc nil t)
       (setq default-input-method "japanese-mozc"))
 
 
 ;; ecb
 (setq stack-trace-on-error t)
-(custom-set-variables
- '(ecb-options-version "2.40"))
+(custom-set-variables '(ecb-options-version "2.40"))
 
 
 ;; markdown-mode
-(require 'markdown-mode)
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'load-path "~/.emacs.d/markdown-mode")
+(when (require 'markdown-mode nil t)
+      (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode)))
 
 
 ;; yaml-mode
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'load-path "~/.emacs.d/yaml-mode")
+(when (require 'yaml-mode nil t)
+      (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
+
