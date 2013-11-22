@@ -3,7 +3,5 @@ These packages are required:
 * auto-complete/auto-complete
 * auto-complete/popup-el
 * sellout/emacs-color-theme-solarized
-* emacs-mozc
 * defunkt/markdown-mode
 * yoshiki/yaml-mode
-
