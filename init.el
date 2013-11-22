@@ -1,8 +1,8 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 (set-face-attribute 'default nil
-                    :family "Ricty"
-                    :height 120)
+                    :family "Inconsolata"
+                    :height 100)
 
 (if (eq window-system 'x)
     (progn (set-scroll-bar-mode 'right)
@@ -18,7 +18,10 @@
 (column-number-mode t)
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
+(global-auto-revert-mode 1)
 
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 ;; bs-show
 (global-set-key "\C-x\C-b" 'bs-show)
@@ -29,21 +32,11 @@
 (setq ispell-dictionary "en")
 
 
-;; LanguageTool
-(require 'langtool)
-(setq langtool-language-tool-jar "~/LanguageTool/LanguageTool.jar")
-
-
 ;; color-theme
 (if (> emacs-major-version 23)
-    (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
-           (load-theme 'solarized-dark t))
-    (progn (add-to-list 'load-path "~/.emacs.d/color-theme")
-           (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-           (require 'color-theme)
-           (require 'color-theme-solarized)
-           (color-theme-initialize)
-           (color-theme-solarized-dark)))
+    (if (eq window-system 'x)
+        (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
+               (load-theme 'solarized-dark t))))
 
 
 ;; dired
@@ -75,11 +68,7 @@
 (require 'perltidy-mode)
 (setq perltidy-bin "perltidy -pbp -q")
 ;; perl-completion-mode
-(require 'perl-completion)
-(add-hook 'cperl-mode-hook
-          (lambda ()
-            (perl-completion-mode t)
-            (setq ac-sources '(ac-source-perl-completion))))
+(add-hook 'cperl-mode-hook (lambda () (setq ac-sources '(ac-source-perl-completion))))
 ;; flymake for perl
 (add-hook 'cperl-mode-hook (lambda () (flymake-mode t)))
 ;; Makes perltidy-mode automatic for cperl-mode
