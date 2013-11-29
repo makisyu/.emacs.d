@@ -2,7 +2,7 @@
 
 (set-face-attribute 'default nil
                     :family "Inconsolata"
-                    :height 100)
+                    :height 120)
 
 (if (eq window-system 'x)
     (progn (set-scroll-bar-mode 'right)
