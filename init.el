@@ -4,6 +4,8 @@
                     :family "Inconsolata"
                     :height 120)
 
+(custom-set-faces '(which-func ((t nil))))
+
 (if (eq window-system 'x)
     (progn (set-scroll-bar-mode 'right)
            (tool-bar-mode 0)))
@@ -136,4 +138,3 @@
 (add-to-list 'load-path "~/.emacs.d/rinari")
 (when (require 'rinari nil t)
       (global-rinari-mode))
-
