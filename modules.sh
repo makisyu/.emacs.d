@@ -5,4 +5,4 @@ git clone https://github.com/auto-complete/auto-complete.git
 git clone https://github.com/auto-complete/popup-el.git
 git clone https://github.com/defunkt/markdown-mode.git
 git clone https://github.com/yoshiki/yaml-mode.git
-
+git clone https://github.com/eschulte/rinari.git

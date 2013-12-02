@@ -23,6 +23,7 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+
 ;; bs-show
 (global-set-key "\C-x\C-b" 'bs-show)
 
@@ -129,4 +130,10 @@
 (add-to-list 'load-path "~/.emacs.d/yaml-mode")
 (when (require 'yaml-mode nil t)
       (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode)))
+
+
+;; Rinari for Ruby on Rails
+(add-to-list 'load-path "~/.emacs.d/rinari")
+(when (require 'rinari nil t)
+      (global-rinari-mode))
 
