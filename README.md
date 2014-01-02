@@ -1,7 +1,10 @@
 # README
 These packages are required:
-* auto-complete/auto-complete
-* auto-complete/popup-el
-* sellout/emacs-color-theme-solarized
-* defunkt/markdown-mode
-* yoshiki/yaml-mode
+* auto-complete
+* popup-el
+* emacs-color-theme-solarized
+* rinari
+* markdown-mode
+* yaml-mode
+* dash.el
+* smart-parens

@@ -139,6 +139,16 @@
 (when (require 'rinari nil t)
       (global-rinari-mode))
 
+
 ;; show diff by git-gutter
 (require 'git-gutter)
 (global-git-gutter-mode +1)
+
+
+;; smart-parens
+(add-to-list 'load-path "~/.emacs.d/smartparens")
+(add-to-list 'load-path "~/.emacs.d/dash.el")
+(require 'smartparens-config)
+(require 'smartparens-html)
+(require 'smartparens-ruby)
+(smartparens-global-mode t)
