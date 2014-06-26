@@ -7,8 +7,7 @@
 (custom-set-faces '(which-func ((t nil))))
 
 (if (eq window-system 'x)
-    (progn (set-scroll-bar-mode 'right)
-           (tool-bar-mode 0)))
+    (set-scroll-bar-mode 'right))
 
 (show-paren-mode t)
 (setq scroll-step 1)
@@ -37,7 +36,7 @@
 
 ;; color-theme
 (if (> emacs-major-version 23)
-    (if (eq window-system 'x)
+    (if (or (eq window-system 'x) (eq window-system 'w32))
         (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
                (load-theme 'solarized-dark t))))
 
