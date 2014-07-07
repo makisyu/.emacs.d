@@ -2,7 +2,7 @@
 
 (set-face-attribute 'default nil
                     :family "Inconsolata"
-                    :height 100)
+                    :height 120)
 
 (custom-set-faces '(which-func ((t nil))))
 
