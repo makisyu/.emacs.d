@@ -1,7 +1,8 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 (set-face-attribute 'default nil
-                    :family "Inconsolata"
+                    :family "Source Code Pro"
+;                    :family "Inconsolata"
                     :height 110)
 
 (custom-set-faces '(which-func ((t nil))))
