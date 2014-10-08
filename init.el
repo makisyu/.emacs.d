@@ -3,7 +3,7 @@
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
 ;                    :family "Inconsolata"
-                    :height 110)
+                    :height 100)
 
 (custom-set-faces '(which-func ((t nil))))
 
@@ -154,3 +154,8 @@
 (require 'smartparens-html)
 (require 'smartparens-ruby)
 (smartparens-global-mode t)
+
+;; flycheck
+(add-to-list 'load-path "~/.emacs.d/flycheck")
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)

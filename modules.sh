@@ -9,3 +9,4 @@ git clone https://github.com/eschulte/rinari.git
 git clone https://github.com/Fuco1/smartparens.git
 git clone https://github.com/magnars/dash.el.git
 git clone https://github.com/syohex/emacs-git-gutter.git
+git clone https://github.com/flycheck/flycheck.git
