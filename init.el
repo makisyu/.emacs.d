@@ -2,12 +2,13 @@
 
 (set-face-attribute 'default nil
                     :family "Inconsolata"
-                    :height 120)
+                    :height 110)
 
 (custom-set-faces '(which-func ((t nil))))
 
 (if (eq window-system 'x)
-    (set-scroll-bar-mode 'right))
+    (progn (set-scroll-bar-mode 'right)
+           (tool-bar-mode 0)))
 
 (show-paren-mode t)
 (setq scroll-step 1)
@@ -140,6 +141,7 @@
 
 
 ;; show diff by git-gutter
+(add-to-list 'load-path "~/.emacs.d/emacs-git-gutter")
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 
