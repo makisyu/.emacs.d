@@ -1,8 +1,8 @@
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 (set-face-attribute 'default nil
-                    :family "Source Code Pro"
-;                    :family "Inconsolata"
+;                    :family "Source Code Pro"
+                    :family "Inconsolata"
                     :height 100)
 
 (custom-set-faces '(which-func ((t nil))))
@@ -16,15 +16,11 @@
 (setq make-backup-files nil)
 (setq completion-ignore-case t)
 (icomplete-mode t)
-(iswitchb-mode t)
 (which-function-mode t)
 (column-number-mode t)
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (global-auto-revert-mode 1)
-
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 
 ;; bs-show
@@ -41,13 +37,6 @@
     (if (or (eq window-system 'x) (eq window-system 'w32))
         (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
                (load-theme 'solarized-dark t))))
-
-
-;; dired
-(require 'dired)
-(put 'dired-find-alternate-file 'disabled nil)
-(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
-(define-key dired-mode-map "a" 'dired-advertised-find-file)
 
 
 ;; auto-complete
