@@ -148,3 +148,6 @@
 (add-to-list 'load-path "~/.emacs.d/flycheck")
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; cscope
+(require 'xcscope)
