@@ -6,12 +6,8 @@ auto-complete
 emacs-color-theme-solarized
 ede-projects.el
 semanticdb
-markdown-mode
-popup-el
-yaml-mode
 rinari
-dash.el
-smartparens
 emacs-git-gutter
 flycheck
 recentf
+elpa
