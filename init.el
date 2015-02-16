@@ -67,10 +67,10 @@
 (when (require 'auto-complete-config nil t)
       (progn (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
              (ac-config-default)
-	     (ac-flyspell-workaround)
+             (ac-flyspell-workaround)
              (setq ac-ignore-case nil)
              (setq ac-use-menu-map t)
-	     (setq ac-sources (append ac-sources '(ac-source-semantic)))))
+             (setq ac-sources (append ac-sources '(ac-source-semantic)))))
 
 
 ;; mozc
@@ -103,7 +103,12 @@
 ;; flycheck
 (add-to-list 'load-path "~/.emacs.d/flycheck")
 (when (require 'flycheck nil t)
-      (add-hook 'after-init-hook #'global-flycheck-mode))
+      (progn ;(setq flycheck-gcc-include-path
+             ;       (list "./include"
+             ;             "/usr/include/glib-2.0"
+             ;             "/usr/lib64/glib-2.0/include"
+             ;             "/usr/include/pixman-1"))
+             (add-hook 'after-init-hook #'global-flycheck-mode)))
 
 
 ;; cscope
