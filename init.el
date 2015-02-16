@@ -1,6 +1,8 @@
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 (set-face-attribute 'default nil
@@ -41,8 +43,11 @@
 ;; color-theme
 (if (> emacs-major-version 23)
     (if (or (eq window-system 'x) (eq window-system 'w32))
-        (progn (add-to-list 'custom-theme-load-path "~/.emacs.d/emacs-color-theme-solarized")
-               (load-theme 'solarized-dark t))))
+        (progn (add-to-list 'custom-theme-load-path
+			    "~/.emacs.d/emacs-color-theme-solarized")
+               (load-theme 'solarized t)
+               (set-frame-parameter nil 'background-mode 'dark)
+               (enable-theme 'solarized))))
 
 
 ;; for C and C++
