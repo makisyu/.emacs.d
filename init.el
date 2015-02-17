@@ -113,3 +113,7 @@
 
 ;; cscope
 (require 'xcscope)
+
+
+;; GLOBAL
+(require 'gtags)
