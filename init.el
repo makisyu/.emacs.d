@@ -89,9 +89,7 @@
 
 
 ;; Rinari for Ruby on Rails
-(add-to-list 'load-path "~/.emacs.d/rinari")
-(when (require 'rinari nil t)
-      (global-rinari-mode))
+;(when (require 'rinari nil t) (global-rinari-mode))
 
 
 ;; show diff by git-gutter
@@ -112,8 +110,7 @@
 
 
 ;; cscope
-(require 'xcscope)
-(setq cscope-do-not-update-database t)
+(when (require 'xcscope nil t) (setq cscope-do-not-update-database t))
 
 ;; GLOBAL
-(require 'gtags)
+(require 'gtags nil t)
