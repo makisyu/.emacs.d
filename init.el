@@ -9,7 +9,10 @@
                     :family "Inconsolata"
                     :height 100)
 
-(custom-set-faces '(which-func ((t nil))))
+(custom-set-faces
+ '(flycheck-info ((t (:underline t))))
+ '(flycheck-warning ((t (:underline t))))
+ '(which-func ((t nil))))
 
 (if (eq window-system 'x)
     (progn (set-scroll-bar-mode 'right)
