@@ -10,3 +10,5 @@ emacs-git-gutter
 flycheck
 recentf
 elpa
+edts
+url

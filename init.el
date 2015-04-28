@@ -9,10 +9,7 @@
                     :family "Inconsolata"
                     :height 100)
 
-(custom-set-faces
- '(flycheck-info ((t (:underline t))))
- '(flycheck-warning ((t (:underline t))))
- '(which-func ((t nil))))
+(custom-set-faces '(which-func ((t nil))))
 
 (if (eq window-system 'x)
     (progn (set-scroll-bar-mode 'right)
@@ -28,6 +25,7 @@
 (setq x-select-enable-clipboard t)
 (recentf-mode t)
 (global-auto-revert-mode 1)
+(setq-default indent-tabs-mode nil) 
 
 
 ;; bs-show
@@ -104,16 +102,25 @@
 ;; flycheck
 (add-to-list 'load-path "~/.emacs.d/flycheck")
 (when (require 'flycheck nil t)
-      (progn ;(setq flycheck-gcc-include-path
-             ;       (list "./include"
-             ;             "/usr/include/glib-2.0"
-             ;             "/usr/lib64/glib-2.0/include"
-             ;             "/usr/include/pixman-1"))
+      (progn (setq flycheck-gcc-include-path
+                   (list "/usr/include"
+                         "/usr/include/glib-2.0"
+                         "/usr/lib64/glib-2.0/include"
+                         "/usr/include/pixman-1"))
              (add-hook 'after-init-hook #'global-flycheck-mode)))
+(custom-set-faces
+  '(flycheck-info ((t (:underline t))))
+  '(flycheck-warning ((t (:underline t)))))
 
 
 ;; cscope
 (when (require 'xcscope nil t) (setq cscope-do-not-update-database t))
 
+
 ;; GLOBAL
 (require 'gtags nil t)
+
+;; EDTS
+;(require 'edts-start)
+;(cusrom-set-variables '(edts-man-root "~/.emacs.d/edts/doc/R16B"))
+
