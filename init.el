@@ -106,21 +106,29 @@
                    (list "/usr/include"
                          "/usr/include/glib-2.0"
                          "/usr/lib64/glib-2.0/include"
-                         "/usr/include/pixman-1"))
-             (add-hook 'after-init-hook #'global-flycheck-mode)))
+                         "/usr/include/pixman-1"))))
 (custom-set-faces
   '(flycheck-info ((t (:underline t))))
   '(flycheck-warning ((t (:underline t)))))
 
 
 ;; cscope
-(when (require 'xcscope nil t) (setq cscope-do-not-update-database t))
+(when (require 'xcscope nil t)
+      (progn (cscope-setup)
+             (setq cscope-do-not-update-database t)
+             (add-hook 'python-mode-hook (function cscope-minor-mode))
+             (add-hook 'erlang-mode (function cscope-minor-mode))))
 
-
-;; GLOBAL
-(require 'gtags nil t)
 
 ;; EDTS
 ;(require 'edts-start)
 ;(cusrom-set-variables '(edts-man-root "~/.emacs.d/edts/doc/R16B"))
 
+
+;; highlight-symbol
+(when (require 'highlight-symbol nil t)
+      (highlight-symbol-mode))
+
+
+;; smart-parens
+(require 'smartparens nil t)
