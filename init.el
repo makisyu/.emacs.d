@@ -35,7 +35,9 @@
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
-
+(add-hook 'c-mode-hook 'flyspell-prog-mode)
+(add-hook 'c++-mode-hook 'flyspell-prog-mode)
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
 
 ;; flyspell for git commit
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
@@ -52,9 +54,6 @@
 
 
 ;; for C and C++
-;; flyspell for C and C++ mode
-(add-hook 'c-mode-hook 'flyspell-prog-mode)
-(add-hook 'c++-mode-hook 'flyspell-prog-mode)
 ;; cedet
 (require 'cedet nil t)
 (global-ede-mode t)
@@ -127,7 +126,9 @@
 
 ;; highlight-symbol
 (when (require 'highlight-symbol nil t)
-      (highlight-symbol-mode))
+      (progn (add-hook 'c-mode-hook 'highlight-symbol-mode)
+             (add-hook 'c++-mode-hook 'highlight-symbol-mode)
+             (add-hook 'python-mode-hook 'highlight-symbol-mode)))
 
 
 ;; smart-parens
