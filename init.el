@@ -45,6 +45,14 @@
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
 
 
+;; color-theme
+(if (> emacs-major-version 23)
+    (if (or (eq window-system 'x) (eq window-system 'w32) (eq window-system 'ns))
+        (progn (load-theme 'solarized t)
+               (set-frame-parameter nil 'background-mode 'dark)
+               (enable-theme 'solarized))))
+
+
 ;; cedet
 (require 'cedet)
 (global-ede-mode t)
@@ -101,7 +109,7 @@
 (add-hook 'python-mode-hook (function cscope-minor-mode))
 
 
-;;; highlight-symbol
+;; highlight-symbol
 (require 'highlight-symbol)
 (add-hook 'c-mode-hook 'highlight-symbol-mode)
 (add-hook 'c++-mode-hook 'highlight-symbol-mode)
@@ -110,6 +118,7 @@
 
 ;; smart-parens
 (require 'smartparens)
+
 
 ;; jinja2 mode
 (require 'jinja2-mode)
