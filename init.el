@@ -28,30 +28,15 @@
 (global-auto-revert-mode 1)
 (setq-default indent-tabs-mode nil) 
 (electric-indent-mode 0)
-
+(setq custom-file (locate-user-emacs-file "custom.el"))
 
 ;; bs-show
 (global-set-key "\C-x\C-b" 'bs-show)
 
-
 ;; ispell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
-;(add-hook 'c-mode-hook 'flyspell-prog-mode)
-;(add-hook 'c++-mode-hook 'flyspell-prog-mode)
-;(add-hook 'python-mode-hook 'flyspell-prog-mode)
-
-;; flyspell for git commit
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
-
-
-;; color-theme
-(if (> emacs-major-version 23)
-    (if (or (eq window-system 'x) (eq window-system 'w32) (eq window-system 'ns))
-        (progn (load-theme 'solarized t)
-               (set-frame-parameter nil 'background-mode 'dark)
-               (enable-theme 'solarized))))
-
 
 ;; cedet
 (require 'cedet)
@@ -59,7 +44,6 @@
 (semantic-mode t)
 (semantic-gcc-setup)
 (setq stack-trace-on-error t)
-
 
 ;; auto-complete
 (require 'auto-complete-config)
@@ -70,35 +54,29 @@
 (setq ac-use-menu-map t)
 (setq ac-sources (append ac-sources '(ac-source-semantic)))
 
-
 ;; mozc
 (require 'mozc)
 (setq default-input-method "japanese-mozc")
 (require 'mozc-popup)
 (setq mozc-candidate-style 'popup)
 
-
 ;; markdown-mode
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
-
 
 ;; yaml-mode
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
-
 ;; show diff by git-gutter
 (require 'git-gutter)
 (global-git-gutter-mode +1)
-
 
 ;; flycheck
 (require 'flycheck)
 (setq flycheck-gcc-include-path
       (list "/usr/local/include"
             "$HOME/include"))
-
 
 ;; cscope
 (require 'xcscope)
@@ -108,17 +86,14 @@
 (add-hook 'c++-mode-hook (function cscope-minor-mode))
 (add-hook 'python-mode-hook (function cscope-minor-mode))
 
-
 ;; highlight-symbol
 (require 'highlight-symbol)
 (add-hook 'c-mode-hook 'highlight-symbol-mode)
 (add-hook 'c++-mode-hook 'highlight-symbol-mode)
 (add-hook 'python-mode-hook 'highlight-symbol-mode)
 
-
 ;; smart-parens
 (require 'smartparens)
-
 
 ;; jinja2 mode
 (require 'jinja2-mode)
@@ -126,4 +101,4 @@
 
 ;; PDB mode
 (require 'pdb-mode)
-
+(add-to-list 'auto-mode-alist '("\\.ent" . pdb-mode))
