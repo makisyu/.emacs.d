@@ -5,7 +5,7 @@
 
 (set-face-attribute 'default nil
                     :family "Inconsolata"
-                    :height 120)
+                    :height 140)
 
 (if (not (eq window-system nil))
     (set-scroll-bar-mode 'right))
@@ -47,12 +47,9 @@
 
 ;; auto-complete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/dict")
 (ac-config-default)
 (ac-flyspell-workaround)
-(setq ac-ignore-case nil)
 (setq ac-use-menu-map t)
-(setq ac-sources (append ac-sources '(ac-source-semantic)))
 
 ;; mozc
 (require 'mozc)
@@ -91,14 +88,24 @@
 (add-hook 'c-mode-hook 'highlight-symbol-mode)
 (add-hook 'c++-mode-hook 'highlight-symbol-mode)
 (add-hook 'python-mode-hook 'highlight-symbol-mode)
+(add-hook 'ruby-mode-hook 'highlight-symbol-mode)
 
 ;; smart-parens
 (require 'smartparens)
 
 ;; jinja2 mode
 (require 'jinja2-mode)
-(add-to-list 'auto-mode-alist '("\\.j2$" . jinja2-mode))
+(add-to-list 'auto-mode-alist '("\\.j2" . jinja2-mode))
 
 ;; PDB mode
 (require 'pdb-mode)
-(add-to-list 'auto-mode-alist '("\\.ent" . pdb-mode))
+(add-to-list 'auto-mode-alist '("\\.pdb$" . pdb-mode))
+(add-to-list 'auto-mode-alist '("\\.ent$" . pdb-mode))
+
+;; Ansible mode
+(require 'ansible)
+(add-hook 'yaml-mode-hook 'ansible)
+
+;; Ansible doc
+(require 'ansible-doc)
+(add-hook 'ansible-hook 'ansible-doc-mode)
