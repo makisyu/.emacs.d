@@ -46,10 +46,35 @@
 (setq stack-trace-on-error t)
 
 ;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-(ac-flyspell-workaround)
-(setq ac-use-menu-map t)
+;(require 'auto-complete-config)
+;(ac-config-default)
+;(ac-flyspell-workaround)
+;(setq ac-use-menu-map t)
+
+;; company
+(require 'company)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 2)
+(setq company-selection-wrap-around t)
+(add-hook 'after-init-hook 'global-company-mode)
+(define-key company-active-map (kbd "M-n") nil)
+(define-key company-active-map (kbd "M-p") nil)
+(define-key company-active-map (kbd "C-n") 'company-select-next)
+(define-key company-active-map (kbd "C-p") 'company-select-previous)
+(set-face-attribute 'company-tooltip nil
+                    :foreground "black" :background "lightgrey")
+(set-face-attribute 'company-tooltip-common nil
+                    :foreground "black" :background "lightgrey")
+(set-face-attribute 'company-tooltip-common-selection nil
+                    :foreground "white" :background "steelblue")
+(set-face-attribute 'company-tooltip-selection nil
+                    :foreground "black" :background "steelblue")
+(set-face-attribute 'company-preview-common nil
+                    :background nil :foreground "lightgrey" :underline t)
+(set-face-attribute 'company-scrollbar-fg nil
+                    :background "orange")
+(set-face-attribute 'company-scrollbar-bg nil
+                    :background "gray40")
 
 ;; mozc
 (require 'mozc)
@@ -73,7 +98,7 @@
 (require 'flycheck)
 (setq flycheck-gcc-include-path
       (list "/usr/local/include"
-            "$HOME/include"))
+            "$HOME/local/include"))
 
 ;; cscope
 (require 'xcscope)
@@ -109,3 +134,10 @@
 ;; Ansible doc
 (require 'ansible-doc)
 (add-hook 'ansible-hook 'ansible-doc-mode)
+
+;; Python
+(require 'jedi-core)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-to-list 'company-backends 'company-jedi)
+(setq jedi:complete-on-dot t)
+(setq jedi:use-shortcuts t)
