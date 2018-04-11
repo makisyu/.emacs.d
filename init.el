@@ -39,17 +39,14 @@
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
 
 ;; cedet
-(require 'cedet)
-(global-ede-mode t)
-(semantic-mode t)
-(semantic-gcc-setup)
-(setq stack-trace-on-error t)
-
-;; auto-complete
-;(require 'auto-complete-config)
-;(ac-config-default)
-;(ac-flyspell-workaround)
-;(setq ac-use-menu-map t)
+;; (require 'cedet)
+;; (semantic-mode)
+;; (semantic-gcc-setup)
+;; (setq stack-trace-on-error t)
+;; (add-hook 'c++-mode-hook 'global-ede-mode)
+;; (add-hook 'c++-mode-hook 'semantic-mode)
+;; (add-hook 'c-mode-hook 'global-ede-mode)
+;; (add-hook 'c-mode-hook 'semantic-mode)
 
 ;; company
 (require 'company)
@@ -76,12 +73,6 @@
 (set-face-attribute 'company-scrollbar-bg nil
                     :background "gray40")
 
-;; mozc
-(require 'mozc)
-(setq default-input-method "japanese-mozc")
-(require 'mozc-popup)
-(setq mozc-candidate-style 'popup)
-
 ;; markdown-mode
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
@@ -96,9 +87,10 @@
 
 ;; flycheck
 (require 'flycheck)
+(global-flycheck-mode)
 (setq flycheck-gcc-include-path
       (list "/usr/local/include"
-            "$HOME/local/include"))
+            "$HOME/.local/include"))
 
 ;; cscope
 (require 'xcscope)
@@ -106,21 +98,14 @@
 (setq cscope-do-not-update-database t)
 (add-hook 'c-mode-hook (function cscope-minor-mode))
 (add-hook 'c++-mode-hook (function cscope-minor-mode))
-(add-hook 'python-mode-hook (function cscope-minor-mode))
 
 ;; highlight-symbol
 (require 'highlight-symbol)
-(add-hook 'c-mode-hook 'highlight-symbol-mode)
-(add-hook 'c++-mode-hook 'highlight-symbol-mode)
-(add-hook 'python-mode-hook 'highlight-symbol-mode)
-(add-hook 'ruby-mode-hook 'highlight-symbol-mode)
+(highlight-symbol-mode t)
 
 ;; smart-parens
 (require 'smartparens)
-
-;; jinja2 mode
-(require 'jinja2-mode)
-(add-to-list 'auto-mode-alist '("\\.j2" . jinja2-mode))
+(smartparens-global-mode t)
 
 ;; PDB mode
 (require 'pdb-mode)
@@ -129,15 +114,23 @@
 
 ;; Ansible mode
 (require 'ansible)
-(add-hook 'yaml-mode-hook 'ansible)
-
-;; Ansible doc
 (require 'ansible-doc)
 (add-hook 'ansible-hook 'ansible-doc-mode)
+(require 'company-ansible)
+(add-to-list 'company-backends 'company-ansible)
+(require 'jinja2-mode)
+(add-to-list 'auto-mode-alist '("\\.j2" . jinja2-mode))
 
 ;; Python
+(setq python-shell-interpreter "python3")
 (require 'jedi-core)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-to-list 'company-backends 'company-jedi)
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t)
+
+;; Terraform
+(require 'terraform-mode)
+(add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
+(require 'company-terraform)
+(add-to-list 'company-backends 'company-terraform)
