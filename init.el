@@ -134,3 +134,6 @@
 (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
 (require 'company-terraform)
 (add-to-list 'company-backends 'company-terraform)
+
+;; Jenkinsfile
+(require 'groovy-mode)
