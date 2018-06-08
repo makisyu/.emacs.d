@@ -51,7 +51,7 @@
 ;; company
 (require 'company)
 (setq company-idle-delay 0)
-(setq company-minimum-prefix-length 2)
+(setq company-minimum-prefix-length 1)
 (setq company-selection-wrap-around t)
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key company-active-map (kbd "M-n") nil)
@@ -72,6 +72,8 @@
                     :background "orange")
 (set-face-attribute 'company-scrollbar-bg nil
                     :background "gray40")
+(require 'company-quickhelp)
+(company-quickhelp-mode +1)
 
 ;; markdown-mode
 (require 'markdown-mode)
@@ -104,7 +106,7 @@
 (highlight-symbol-mode t)
 
 ;; smart-parens
-(require 'smartparens)
+(require 'smartparens-config)
 (smartparens-global-mode t)
 
 ;; PDB mode
@@ -134,6 +136,3 @@
 (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
 (require 'company-terraform)
 (add-to-list 'company-backends 'company-terraform)
-
-;; Jenkinsfile
-(require 'groovy-mode)
