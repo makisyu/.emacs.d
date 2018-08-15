@@ -90,6 +90,7 @@
 ;; flycheck
 (require 'flycheck)
 (global-flycheck-mode)
+(defvaralias 'flycheck-python-flake8-executable 'python-shell-interpreter)
 (setq flycheck-gcc-include-path
       (list "/usr/local/include"
             "$HOME/.local/include"))
@@ -136,3 +137,6 @@
 (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
 (require 'company-terraform)
 (add-to-list 'company-backends 'company-terraform)
+
+;; Dockerfile
+(require 'dockerfile-mode)
