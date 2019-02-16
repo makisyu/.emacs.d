@@ -11,7 +11,7 @@
     (set-scroll-bar-mode 'right))
 
 ;; color-theme
-(if (and (> emacs-major-version 23) (not (eq window-system nil)))
+(if (not (eq window-system nil))
     (progn (load-theme 'solarized t)
            (set-frame-parameter nil 'background-mode 'dark)
            (enable-theme 'solarized)))
@@ -23,10 +23,11 @@
 (icomplete-mode t)
 (which-function-mode t)
 (column-number-mode t)
-(setq x-select-enable-clipboard t)
+(superword-mode t)
+(setq select-enable-clipboard t)
 (recentf-mode t)
 (global-auto-revert-mode 1)
-(setq-default indent-tabs-mode nil) 
+(setq-default indent-tabs-mode nil)
 (electric-indent-mode 0)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 
@@ -37,16 +38,6 @@
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "en")
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . flyspell-mode))
-
-;; cedet
-;; (require 'cedet)
-;; (semantic-mode)
-;; (semantic-gcc-setup)
-;; (setq stack-trace-on-error t)
-;; (add-hook 'c++-mode-hook 'global-ede-mode)
-;; (add-hook 'c++-mode-hook 'semantic-mode)
-;; (add-hook 'c-mode-hook 'global-ede-mode)
-;; (add-hook 'c-mode-hook 'semantic-mode)
 
 ;; company
 (require 'company)
@@ -79,10 +70,6 @@
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist '("\\.md$" . gfm-mode))
 
-;; yaml-mode
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-
 ;; show diff by git-gutter
 (require 'git-gutter)
 (global-git-gutter-mode +1)
@@ -93,13 +80,6 @@
 (setq flycheck-gcc-include-path
       (list "/usr/local/include"
             "$HOME/.local/include"))
-
-;; cscope
-(require 'xcscope)
-(cscope-setup)
-(setq cscope-do-not-update-database t)
-(add-hook 'c-mode-hook (function cscope-minor-mode))
-(add-hook 'c++-mode-hook (function cscope-minor-mode))
 
 ;; highlight-symbol
 (require 'highlight-symbol)
@@ -114,15 +94,6 @@
 (add-to-list 'auto-mode-alist '("\\.pdb$" . pdb-mode))
 (add-to-list 'auto-mode-alist '("\\.ent$" . pdb-mode))
 
-;; Ansible mode
-(require 'ansible)
-(require 'ansible-doc)
-(add-hook 'ansible-hook 'ansible-doc-mode)
-(require 'company-ansible)
-(add-to-list 'company-backends 'company-ansible)
-(require 'jinja2-mode)
-(add-to-list 'auto-mode-alist '("\\.j2" . jinja2-mode))
-
 ;; Python
 (setq python-shell-interpreter "python3")
 (require 'jedi-core)
@@ -130,9 +101,3 @@
 (add-to-list 'company-backends 'company-jedi)
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t)
-
-;; Terraform
-(require 'terraform-mode)
-(add-hook 'terraform-mode-hook 'terraform-format-on-save-mode)
-(require 'company-terraform)
-(add-to-list 'company-backends 'company-terraform)
