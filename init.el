@@ -77,6 +77,7 @@
 ;; flycheck
 (require 'flycheck)
 (global-flycheck-mode)
+(defvaralias 'flycheck-python-flake8-executable 'python-shell-interpreter)
 (setq flycheck-gcc-include-path
       (list "/usr/local/include"
             "$HOME/.local/include"))
