@@ -90,14 +90,9 @@
 (require 'smartparens-config)
 (smartparens-global-mode t)
 
-;; PDB mode
-(require 'pdb-mode)
-(add-to-list 'auto-mode-alist '("\\.pdb$" . pdb-mode))
-(add-to-list 'auto-mode-alist '("\\.ent$" . pdb-mode))
-
 ;; Python
-(setq python-shell-interpreter "python3")
 (require 'jedi-core)
+(setq python-shell-interpreter "python3")
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-to-list 'company-backends 'company-jedi)
 (setq jedi:complete-on-dot t)
