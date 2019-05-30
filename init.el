@@ -97,3 +97,15 @@
 (add-to-list 'company-backends 'company-jedi)
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t)
+
+;; terraform
+(require 'terraform-mode)
+(add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
+(require 'company-terraform)
+(company-terraform-init)
+
+;; Ansible
+(require 'ansible)
+(add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+(require 'company-ansible)
+(add-to-list 'company-backends 'company-ansible)
