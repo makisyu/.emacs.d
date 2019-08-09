@@ -3,9 +3,8 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-(set-face-attribute 'default nil
-                    :family "Inconsolata"
-                    :height 140)
+(if (not (eq window-system nil))
+    (set-face-attribute 'default nil :family "Inconsolata" :height 140))
 
 (if (not (eq window-system nil))
     (set-scroll-bar-mode 'right))
@@ -79,8 +78,7 @@
 (global-flycheck-mode)
 (defvaralias 'flycheck-python-flake8-executable 'python-shell-interpreter)
 (setq flycheck-gcc-include-path
-      (list "/usr/local/include"
-            "$HOME/.local/include"))
+      (list "/usr/local/include" "$HOME/.local/include"))
 
 ;; highlight-symbol
 (require 'highlight-symbol)
@@ -109,3 +107,7 @@
 (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
 (require 'company-ansible)
 (add-to-list 'company-backends 'company-ansible)
+
+(require 'neotree)
+(setq neo-show-hidden-files t)
+(set-face-attribute 'neo-file-link-face nil :foreground "Green")
